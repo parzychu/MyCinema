@@ -1,1 +1,7 @@
 packages/
+bin/
+obj/
+dist/
+Libs/
+node_modules/
+.vs/

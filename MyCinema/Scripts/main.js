@@ -1,0 +1,2 @@
+﻿
+alert("webpack ok");
