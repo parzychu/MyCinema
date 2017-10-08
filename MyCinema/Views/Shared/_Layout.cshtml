@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.Services.Description
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,8 +7,12 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    
+    <link rel="stylesheet" type="text/css" href="dist/style.css">
 </head>
 <body>
+
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -20,6 +25,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
@@ -27,16 +33,36 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+<div class="container body-content">
+    <div id="app">
+           
+            
     </div>
-
+</div>
+@RenderBody()
+<hr />
+<footer>
+    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+</footer>
+@if (Settings.UseWebpackDevServer)
+{
+    <link href="@(Settings.WebpackDevServerRoot)/vendor.css" rel="stylesheet">
+    <link href="@(Settings.WebpackDevServerRoot)/app.css" rel="stylesheet">
+    <script type="text/javascript" src="@(Settings.WebpackDevServerRoot)/polyfills.js"></script>
+    <script type="text/javascript" src="@(Settings.WebpackDevServerRoot)/vendor.js"></script>
+    <script type="text/javascript" src="@(Settings.WebpackDevServerRoot)/app.js"></script>
+}
+else
+{
+    @Scripts.Render("~/node_modules/vue/dist/vue.min.js")
+    @Scripts.Render("~/node_modules/axios/dist/axios.min.js")
+    @Scripts.Render("~/dist/bundle.js")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+}
+
+    
+
 </body>
 </html>
