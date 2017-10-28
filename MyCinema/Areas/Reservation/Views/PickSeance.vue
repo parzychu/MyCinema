@@ -26,6 +26,8 @@
     </div>
 </template>
 <script>
+    import Utils from "Utils/Utils";
+
     export default {
         name: "PickSeance",
         data: function () {
@@ -74,15 +76,11 @@
         methods: {
             changeDay: function (day) {
                 this.pickedDayHours = day.hours;
-                this.previousDayActive && (this.previousDayActive.isActive = false);
-                day.isActive = !day.isActive;
-                this.previousDayActive = day;
+                Utils.toggleIsActiveProp(day, this.previousDayActive);
             },
             changeHour: function(hour) {
                 this.seanceId = hour.id;
-                this.previousHourActive && (this.previousHourActive.isActive = false);
-                hour.isActive = !hour.isActive;
-                this.previousHourActive = hour;
+                Utils.toggleIsActiveProp(hour, this.previousHourActive);
             }
         }
     };

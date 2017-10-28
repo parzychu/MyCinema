@@ -43,7 +43,8 @@ module.exports = {
     resolve: {
         alias: {
             'vue$': 'vue/dist/vue.js', // 'vue/dist/vue.common.js' for webpack 1
-            'Components': path.resolve(__dirname, 'Components/')
+            'Components': path.resolve(__dirname, 'Components/'),
+            'Utils': path.resolve(__dirname, 'Scripts/Utils/')
         }
     },
     entry: './Scripts/main.js',
