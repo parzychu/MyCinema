@@ -1,16 +1,17 @@
 ﻿
 <template>
     <div>
-        <p>About page  xxdd</p>
-
-        <!--<movie-preview-item v-for="movie in currentMovies"
-                            :key="movie.Id"
-                            :movie="movie"></movie-preview-item>-->
+        <p>CurrentylPlayingSection</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); grid-gap: 20px;">
+            <movie-preview-item v-for="movie in currentMovies"
+                                :key="movie.Id"
+                                :movie="movie"></movie-preview-item>
+        </div>
     </div>
 </template>
 
 <script>
-    import MoviePreviewItem from '../MoviePreview/MoviePreview.vue';
+    import MoviePreviewItem from 'Components/MoviePreview/MoviePreview.vue';
 
     export default {
         name: 'CurrentlyPlayingSection',
@@ -45,10 +46,6 @@
 </script>
 
 <style lang="scss">
-    @import "Styles/Variables";
     @import "Styles/Main";
 
-    body {
-        background: $my-color-black;
-    }
 </style>

@@ -151,6 +151,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Home\Controllers\MoviesController.cs" />
     <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
+    <Compile Include="Areas\Reservation\ReservationAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -177,7 +178,6 @@
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Home\Index.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\MyCinemaLogo.png" />
@@ -206,7 +206,8 @@
     <Content Include="Areas\Home\Views\web.config" />
     <Content Include="Areas\Home\Index.vue" />
     <Content Include="Areas\Home\Views\CurrentlyPlayingSection\CurrentlyPlayingSection.vue" />
-    <Content Include="Areas\Home\Views\MoviePreview\MoviePreview.vue" />
+    <Content Include="Components\MoviePreview\MoviePreview.vue" />
+    <Content Include="Areas\Reservation\Views\web.config" />
     <None Include="Libs\jquery-1.10.2.intellisense.js" />
     <Content Include="Libs\jquery-1.10.2.js" />
     <Content Include="Libs\jquery-1.10.2.min.js" />
@@ -249,7 +250,9 @@
     <Folder Include="Areas\Home\NewFolder1\" />
     <Folder Include="Areas\Home\Views\Movies\" />
     <Folder Include="Areas\Home\Views\Shared\" />
-    <Folder Include="Components\" />
+    <Folder Include="Areas\Reservation\Controllers\" />
+    <Folder Include="Areas\Reservation\Models\" />
+    <Folder Include="Areas\Reservation\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
