@@ -4,24 +4,21 @@
         :key="index"
         :row-index="index"
         class="seats-picker-row">
-        <seats-picker-seat v-for="seat in rows"
+        <div v-for="seat in rows"
             :key="seat.id"
-            :data="seat"
-            @changed="onChildChanged">
-                {{seat}}
-        </seats-picker-seat>
+            @click="onSeatClicked(seat)"
+            class="seats-picker-seat"
+            :class="{'is-active': seat.isActive}">
+                {{seat.number}}
+        </div>
     </div> 
 </div>
 </template>
 
 <script>
-import SeatsPickerSeat from './Seat.vue';
 
 export default {
     name: 'SeatsPicker',
-    components: {
-        'seats-picker-seat': SeatsPickerSeat
-    },
     data: function() {
         return {
             seats: [
@@ -56,15 +53,17 @@ export default {
         }
     },
     methods: {
-        onChildChanged: function(value) {
+        onSeatClicked: function(value) {
             console.log(value)
+            value.isActive = !value.isActive;
+
             if (value.isActive) {
                 this.choosenSeats.push(value.id);
             } else {
                 let index = this.choosenSeats.indexOf(value.id)
                 this.choosenSeats.splice(index, 1);
             }
-            
+
             this.$emit('changed', this.choosenSeats);
         }
     }
@@ -81,8 +80,19 @@ export default {
         display: flex;
         margin-bottom: 10px; 
 
-        .my-seats-picker-seat:not(:first-of-type) {
+        .seats-picker-seat:not(:first-of-type) {
             margin-left: 10px;
+        }
+    }
+    
+    .seats-picker-seat {
+        background: $my-color-primary;
+        color: $my-color-white;
+        width: 30px;
+        height: 30px;
+
+        &.is-active {
+            background: $my-color-black;
         }
     }
 }
