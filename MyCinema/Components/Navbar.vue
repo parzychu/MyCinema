@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <router-link to="/Reservation/1/1/1">Reservation</router-link>
+        <router-link to="/Reservation">Reservation</router-link>
         <router-link to="/Home">Home</router-link>
     </div>
 </template>

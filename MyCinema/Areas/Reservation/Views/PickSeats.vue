@@ -1,17 +1,33 @@
 ﻿<template>
     <div>
         <h1>PickSeats</h1>
-            </div> 
+
+<seats-picker @changed="onSeatsPickerChanged"></seats-picker>
+
+{{pickedSeats}}
+    </div> 
+
 </template>
 
 <script>
+import SeatsPicker from 'Components/SeatsPicker/SeatsPicker.vue';
+
 export default {
     name: 'PickSeats',
-  data () {
-    return {
-      msg: 'Hello from vue-loader!'
+    components: {
+      'seats-picker': SeatsPicker
+    },
+    data: function() {
+      return {
+        pickedSeats: []
+      }
+    },
+    methods: {
+      onSeatsPickerChanged: function(value) {
+        this.pickedSeats = value;
+        console.log(value)
+      }
     }
-  }
 }
 </script>
 

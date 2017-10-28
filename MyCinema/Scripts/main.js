@@ -5,11 +5,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 import Home from '../Areas/Home/Index.vue';
-
 import ReservationRoutes from '../Areas/Reservation/Routes.vue';
 import App from "./app.vue";
 import Navbar from "../Components/Navbar.vue";
-
+import MoviePreviewItem from 'Components/MoviePreview/MoviePreview.vue';
 
 const routes = [
     ...ReservationRoutes,
@@ -23,6 +22,8 @@ const router = new VueRouter({
 const NotFound = { template: '<p>Page not found</p>' }
 
 Vue.component('my-navbar', Navbar);
+
+Vue.component('movie-previev-item', MoviePreviewItem);
 
 Vue.component('my-component',
     {

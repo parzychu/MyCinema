@@ -13,13 +13,11 @@
 </template>
 
 <script>
-    import CurrentlyPlayingSection from './Views/CurrentlyPlayingSection/CurrentlyPlayingSection.vue';
-    import MoviePreviewItem from 'Components/MoviePreview/MoviePreview.vue';
+    import CurrentlyPlayingSection from 'Components/CurrentlyPlayingSection/CurrentlyPlayingSection.vue';
 
     export default {
         name: 'HomeView',
         components: {
-            MoviePreviewItem,
             CurrentlyPlayingSection
         }
     }

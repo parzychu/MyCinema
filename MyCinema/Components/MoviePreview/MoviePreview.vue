@@ -4,7 +4,7 @@
         <img class="bg-poster" src="https://media.multikino.pl/thumbnails/50/rc/MjkwMEEy/eyJ0aHVtYm5haWwiOnsic2l6ZSI6WyIxMDAwMCIsIjEwMDAwIl0sIm1vZGUiOiJpbnNldCJ9fQ==/uploads/images/films_and_events/twoj-vincent-pl_b9d917af7b.JPG"/>
         Film 1
         sss
-        <a> Rezerwuj </a>
+        <router-link to="/Reservation/2">Rezerwuj</router-link>
         <div>{{ movie.Title }}</div>
 
     </div>

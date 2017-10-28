@@ -6,9 +6,9 @@
     import PickSeats from './Views/PickSeats.vue';
 
     export default [
-        { path: '/Reservation', component: PickMovie },
-        { path: '/Reservation/:movieId', component: PickCinema },
-        { path: '/Reservation/:movieId/:cinemaId', component: PickSeance },
-        { path: '/Reservation/:movieId/:cinemaId/:seanceId', component: PickSeats },
+        { name: 'PickMovie', path: '/Reservation', component: PickMovie },
+        { name: 'PickCinema', path: '/Reservation/:movieId', component: PickCinema },
+        { name: 'PickSeance', path: '/Reservation/:movieId/:cinemaId', component: PickSeance },
+        { name: 'PickSeats', path: '/Reservation/:movieId/:cinemaId/:seanceId', component: PickSeats },
     ]
 </script>
