@@ -5,27 +5,22 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 import Home from '../Areas/Home/Index.vue';
+
+import ReservationRoutes from '../Areas/Reservation/Routes.vue';
 import App from "./app.vue";
 import Navbar from "../Components/Navbar.vue";
 
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
 
 const routes = [
-    { path: '/Reservation', component: Foo },
+    ...ReservationRoutes,
     { path: '/Home', component: Home }
 ];
 
 const router = new VueRouter({
-    routes // short for `routes: routes`
+    routes
 });
 
 const NotFound = { template: '<p>Page not found</p>' }
-
-//const routes = {
-//    '/': Home,
-//    '/about': 'About'
-//}
 
 Vue.component('my-navbar', Navbar);
 
@@ -39,20 +34,8 @@ Vue.component('my-component',
 const v = new Vue({
     router,
     data: {
-        message: 'Hello Vue.js!',
-        currentRoute: window.location.pathname
+        message: 'Hello Vue.js!'
     },
-//    computed: {
-//        ViewComponent() {
-//            const matchingView = routes[this.currentRoute];
-//
-//            console.log(this.currentRoute)
-//            return matchingView
-//                ? Home
-//                : NotFound
-//        }
-//    },
-//    render(h) { return h(this.ViewComponent) },
     methods: {
       goBack() {
           window.history.length > 1

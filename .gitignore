@@ -5,3 +5,4 @@ dist/
 Libs/
 node_modules/
 .vs/
+npm-debug.log
