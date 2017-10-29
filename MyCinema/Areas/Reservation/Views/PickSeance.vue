@@ -2,11 +2,11 @@
     <div class="my-pick-seance">
         <h1>PickSeance</h1>
         <div class="pick-seance-container">
-            <div :key="day.day" class="pick-seance-day" 
+            <div :key="day.date" class="pick-seance-day" 
                 :class="{'is-active': day.isActive}"
                 v-for="day in seanceDates" 
                 v-on:click="changeDay(day)">
-                {{day.day}}
+                {{day.date}}
             </div>
         </div>
         <div class="pick-seance-container">
@@ -75,13 +75,21 @@
         },
         methods: {
             changeDay: function (day) {
-                this.pickedDayHours = day.hours;
+                this.pickedDayHours = day.seances;
                 Utils.toggleIsActiveProp(day, this.previousDayActive);
             },
             changeHour: function(hour) {
                 this.seanceId = hour.id;
                 Utils.toggleIsActiveProp(hour, this.previousHourActive);
             }
+        },
+        created: function () {
+            axios.post("Reservation/Reservation/GetDates")
+                .then((res) => {
+                    this.seanceDates = res.data;
+                }).catch((e) => {
+                    console.error(e);
+                });
         }
     };
 </script>

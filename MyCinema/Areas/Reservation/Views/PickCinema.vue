@@ -23,19 +23,7 @@ import Utils from "Utils/Utils";
     name: 'PickCinema',
     data: function () {
       return {
-        cinemas: [{
-            name: "Białystok",
-            id: 22
-          },
-          {
-            name: "Warszawa",
-            id: 24
-          },
-          {
-            name: "Kraków",
-            id: 26
-          }
-        ],
+        cinemas: [],
         cinemaId: null,
         previousSelectedCinema: null
       }

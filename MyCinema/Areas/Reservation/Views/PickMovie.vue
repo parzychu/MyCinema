@@ -17,8 +17,16 @@ export default {
   },
   data () {
     return {
-      msg: 'Hello from vue-loader!'
+      movies: []
     }
+  },
+  created: function () {
+      axios.post("Reservation/Reservation/GetMovies")
+          .then((res) => {
+              this.movies = res.data;
+          }).catch((e) => {
+              console.error(e);
+          });
   }
 }
 </script>

@@ -63,7 +63,7 @@ namespace MyCinema.Areas.Reservation.Controllers
                     date=date.Key.ToString(),
                     seances=date.Select(seance => new
                     {
-                        time = seance.Time,
+                        hour = seance.Time,
                         id = seance.Id
                     })
                 }

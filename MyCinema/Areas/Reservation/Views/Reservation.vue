@@ -12,12 +12,10 @@
 
 <script>
     import CurrentlyPlayingSection from './Views/CurrentlyPlayingSection/CurrentlyPlayingSection.vue';
-    import MoviePreviewItem from 'Components/MoviePreview/MoviePreview.vue';
 
     export default {
         name: 'HomeView',
         components: {
-            MoviePreviewItem,
             CurrentlyPlayingSection
         }
     }
