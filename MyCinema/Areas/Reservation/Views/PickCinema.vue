@@ -40,6 +40,14 @@ import Utils from "Utils/Utils";
         previousSelectedCinema: null
       }
     },
+    created: function () {
+        axios.post("Reservation/Reservation/GetCinemas")
+            .then((res) => {
+                this.cinemas = res.data;
+            }).catch((e) => {
+                console.error(e);
+            });
+    },
     methods: {
       pickCinema: function(cinema) {
         this.cinemaId = cinema.id;
