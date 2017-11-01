@@ -7,6 +7,12 @@
         <currently-playing-section></currently-playing-section>
 
         <span>ddd</span>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-primary" type="text" placeholder="Primary input">
+            </div>
+        </div>
     </div>
 </template>
 
@@ -23,4 +29,5 @@
 
 <style lang="scss">
     @import "Styles/Main";
+    @import "font-awesome";
 </style>

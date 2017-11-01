@@ -3,6 +3,10 @@
 @import "Styles/Variables";
 
 body {
-    background: $my-color-white;
+    background: $my-color-bg;
     color: $my-color-primary;
+}
+
+.footer {
+    color: $my-color-gray-text;
 }

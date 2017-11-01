@@ -11,7 +11,7 @@
   </div>
 
     <router-link :to="{name: 'PickSeance', params: { cinemaId: cinemaId}}"
-    class="pick-cinema-cinema is-active">Dalej</router-link>
+    class="button is-primary">Dalej</router-link>
   </div>
 </template>
 
@@ -49,6 +49,8 @@ import Utils from "Utils/Utils";
 <style lang="scss">
 @import "Styles/Main";
 @import "Styles/Variables";
+
+
 
 .my-pick-cinema {
 

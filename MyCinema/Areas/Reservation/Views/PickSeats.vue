@@ -5,6 +5,10 @@
         <seats-picker @changed="onSeatsPickerChanged"></seats-picker>
 
         {{pickedSeats}}
+
+        <router-link :to="{name: 'LogInPage', params: { reservationId: pickedSeats[0]}}"
+            class="button is-primary">Dalej</router-link>
+  </div>
     </div> 
 
 </template>

@@ -27,13 +27,16 @@ namespace MyCinema.Areas.Reservation.Controllers
         {
             MyCinemaDBEntities2 context = new MyCinemaDBEntities2();
             
-            var cinemaList = context.Cinemas
+            var cinemaList = context.Seances
+                .Where(seance => seance.MovieId == 4)
+                .Join(context.Cinemas, s => s.CinemaId, c => c.Id, (s, c) => c)
                 .Select(cinema => new
                 {
                     name=cinema.Name,
                     phone=cinema.Telephone,
                     id=cinema.Id
                 })
+                .Distinct()
                 .ToList();
 
             return Json(cinemaList);
@@ -53,11 +56,11 @@ namespace MyCinema.Areas.Reservation.Controllers
             return Json(movieList);
         }
 
-        public ActionResult GetDates()
+        public ActionResult GetDates(int cinemaId)
         {
             MyCinemaDBEntities2 context = new MyCinemaDBEntities2();
 
-            var dateList = context.Seances.Where(seance => seance.CinemaId == 7).GroupBy(seance => seance.Date).Select(date =>
+            var dateList = context.Seances.Where(seance => seance.CinemaId == cinemaId).GroupBy(seance => seance.Date).Select(date =>
                 new 
                 {
                     date=date.Key.ToString(),

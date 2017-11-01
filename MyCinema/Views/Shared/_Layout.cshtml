@@ -5,47 +5,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+
+    @Styles.Render("~/dist/style.css")
+    @Styles.Render("~/Content/font-awesome/css/font-awesome.min.css")
     
-    <link rel="stylesheet" type="text/css" href="dist/style.css">
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://unpkg.com/buefy/lib/buefy.min.css">
+    <script src="https://unpkg.com/buefy"></script>
 </head>
 <body>
 
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-<div class="container body-content">
-    <div id="app">
-           
-        <my-navbar></my-navbar>
-
+<div id="app">
+            
+    <my-navbar></my-navbar>
+    <div class="container">
         <router-view></router-view>
     </div>
+    <footer class="footer">
+        <div class="container">
+            &copy; @DateTime.Now.Year - My ASP.NET Application
+        </div>
+    </footer>
 </div>
-@RenderBody()
-<hr />
-<footer>
-    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-</footer>
+<div style="display: none">
+    @RenderBody()
+</div>
+
 @if (Settings.UseWebpackDevServer)
 {
     <link href="@(Settings.WebpackDevServerRoot)/vendor.css" rel="stylesheet">
@@ -60,7 +45,6 @@ else
     @Scripts.Render("~/node_modules/axios/dist/axios.min.js")
     @Scripts.Render("~/dist/bundle.js")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 }
 

@@ -20,7 +20,7 @@
         </div>
         <router-link v-if="seanceId"
             :to="{name: 'PickSeats', params: { seanceId: seanceId}}" 
-            class="pick-seance-hour is-active">
+            class="button is-primary">
                 Dalej
         </router-link>
     </div>
@@ -84,7 +84,9 @@
             }
         },
         created: function () {
-            axios.post("Reservation/Reservation/GetDates")
+            axios.post("Reservation/Reservation/GetDates", {
+                cinemaId: this.$route.params.cinemaId
+            })
                 .then((res) => {
                     this.seanceDates = res.data;
                 }).catch((e) => {

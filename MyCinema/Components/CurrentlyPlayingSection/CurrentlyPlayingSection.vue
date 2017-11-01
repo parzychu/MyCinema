@@ -1,13 +1,13 @@
 ﻿
 <template>
-    <div>
+    <section class="section">
         <p>CurrentylPlayingSection</p>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); grid-gap: 20px;">
             <movie-preview-item v-for="movie in currentMovies"
                                 :key="movie.Id"
                                 :movie="movie"></movie-preview-item>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>

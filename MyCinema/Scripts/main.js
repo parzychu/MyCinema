@@ -4,6 +4,11 @@ console.log("webpack ok");
 import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
+
+import Buefy from 'buefy';
+Vue.use(Buefy);
+import 'buefy/lib/buefy.css';
+
 import Home from '../Areas/Home/Index.vue';
 import ReservationRoutes from '../Areas/Reservation/Routes.vue';
 import App from "./app.vue";
