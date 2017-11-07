@@ -1,13 +1,10 @@
 ﻿
 <template>
-    <section class="section">
-        <p>CurrentylPlayingSection</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); grid-gap: 20px;">
-            <movie-preview-item v-for="movie in currentMovies"
-                                :key="movie.Id"
-                                :movie="movie"></movie-preview-item>
-        </div>
-    </section>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); grid-gap: 20px;">
+        <movie-preview-item v-for="movie in movies"
+                            :key="movie.Id"
+                            :movie="movie"></movie-preview-item>
+    </div>
 </template>
 
 <script>
@@ -15,7 +12,7 @@
 
     export default {
         name: 'CurrentlyPlayingSection',
-
+        props: ['movies'],
         components: {
             MoviePreviewItem
         },
@@ -25,7 +22,7 @@
             }
         },
         mounted: function () {
-            this.getCurrentMovies();
+            
         },
         methods: {
             getCurrentMovies: function () {

@@ -28,5 +28,7 @@ namespace MyCinema
         public virtual DbSet<Cinema> Cinemas { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
         public virtual DbSet<Seance> Seances { get; set; }
+        public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<Seat> Seats { get; set; }
     }
 }

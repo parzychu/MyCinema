@@ -1,7 +1,10 @@
 ﻿<template>
-    <div class="my-pick-seance">
-        <h1>PickSeance</h1>
-        <div class="pick-seance-container">
+    <section class="section is-fullheight my-pick-seance">
+        <div class="section-title">
+            <h2 class="title is-2">Pick Seance</h2>
+        </div>
+        <div class="section-body">
+            <div class="pick-seance-container">
             <div :key="day.date" class="pick-seance-day" 
                 :class="{'is-active': day.isActive}"
                 v-for="day in seanceDates" 
@@ -23,7 +26,8 @@
             class="button is-primary">
                 Dalej
         </router-link>
-    </div>
+        </div>
+    </section>
 </template>
 <script>
     import Utils from "Utils/Utils";

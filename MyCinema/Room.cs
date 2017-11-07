@@ -12,23 +12,22 @@ namespace MyCinema
     using System;
     using System.Collections.Generic;
     
-    public partial class Cinema
+    public partial class Room
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cinema()
+        public Room()
         {
-            this.Rooms = new HashSet<Room>();
+            this.Seats = new HashSet<Seat>();
         }
     
         public int Id { get; set; }
+        public int CinemaId { get; set; }
         public string Name { get; set; }
-        public string Adress { get; set; }
-        public string Telephone { get; set; }
-        public string Details { get; set; }
-        public string Email { get; set; }
+        public int RowCount { get; set; }
+        public int ColumnCount { get; set; }
     
-        public virtual Seance Seance { get; set; }
+        public virtual Cinema Cinema { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<Seat> Seats { get; set; }
     }
 }

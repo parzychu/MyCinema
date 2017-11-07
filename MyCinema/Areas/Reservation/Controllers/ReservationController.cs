@@ -50,6 +50,8 @@ namespace MyCinema.Areas.Reservation.Controllers
                 {
                     name=seance.FirstOrDefault().Movie.Title,
                     id=seance.FirstOrDefault().Movie.Id,
+                    directorName=seance.FirstOrDefault().Movie.DirectorName,
+                    runningTime=seance.FirstOrDefault().Movie.RunningTime,
                 })
                 .ToList();
 

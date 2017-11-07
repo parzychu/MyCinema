@@ -10,3 +10,29 @@ body {
 .footer {
     color: $my-color-gray-text;
 }
+
+.title {
+    color: $my-color-white;
+}
+
+
+.section.is-fullheight {
+    min-height: calc(100vh - 52px);
+    display: flex;
+    flex-direction: column;
+
+    .section-title {
+        flex: 0 0 auto;
+    }
+
+    .section-body {
+        flex: 1 1 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        > .button.align-left {
+            align-self: flex-start;
+        }
+    }
+}

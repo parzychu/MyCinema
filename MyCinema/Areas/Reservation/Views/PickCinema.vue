@@ -1,18 +1,16 @@
 ﻿<template>
-  <div class="my-pick-cinema">
-    <h1>PickCinema</h1>
+  <section class="section is-fullheight my-pick-cinema">
+    <div class="section-title">
+      <h2 class="title is-2">Pick Cinema</h2>
+    </div>
+    <div class="section-body">
+      <div v-for="cinema in cinemas" :key="cinema.id" @click="pickCinema(cinema)" :class="{'is-active': cinema.isActive}" class="pick-cinema-cinema">
+        {{cinema.name}}
+      </div>
 
-  <div v-for="cinema in cinemas"
-    :key="cinema.id"
-    @click="pickCinema(cinema)"
-    :class="{'is-active': cinema.isActive}"
-    class="pick-cinema-cinema">
-      {{cinema.name}}
-  </div>
-
-    <router-link :to="{name: 'PickSeance', params: { cinemaId: cinemaId}}"
-    class="button is-primary">Dalej</router-link>
-  </div>
+      <router-link :to="{name: 'PickSeance', params: { cinemaId: cinemaId}}" class="button is-primary">Dalej</router-link>
+    </div>
+  </section>
 </template>
 
 <script>

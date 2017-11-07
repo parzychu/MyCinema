@@ -1,9 +1,12 @@
 ﻿<template>
-    <div>
-        <h1>PickMovie</h1>
-
-        <currently-playing-section></currently-playing-section>
-    </div> 
+    <section class="section is-fullheight my-pick-cinema">
+        <div class="section-title">
+            <h2 class="title is-2">Pick Movie</h2>
+        </div>
+        <div class="section-body">
+            <currently-playing-section :movies="movies"></currently-playing-section>
+        </div>
+    </section>
 </template>
 
 <script>

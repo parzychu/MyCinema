@@ -5,12 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="78ef2a0585074b5d869b8574c8e7c9fa" Name="Diagram1">
-        <EntityTypeShape EntityType="MyCinemaDBModel.Cinema" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyCinemaDBModel.Movie" Width="1.5" PointX="0.75" PointY="1.125" />
-        <EntityTypeShape EntityType="MyCinemaDBModel.Seance" Width="1.5" PointX="3.375" PointY="0.875" />
+        <EntityTypeShape EntityType="MyCinemaDBModel.Cinema" Width="1.5" PointX="4.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCinemaDBModel.Movie" Width="1.5" PointX="0.625" PointY="0.5" />
+        <EntityTypeShape EntityType="MyCinemaDBModel.Seance" Width="1.5" PointX="2.75" PointY="0.5" />
         <AssociationConnector Association="MyCinemaDBModel.FK_Seance_ToCinema" />
         <AssociationConnector Association="MyCinemaDBModel.FK_Seance_To_Movie" />
-      </Diagram>
+        <EntityTypeShape EntityType="MyCinemaDBModel.Room" Width="1.5" PointX="6.875" PointY="0.625" />
+        <AssociationConnector Association="MyCinemaDBModel.FK_Room_ToCinema" />
+        <EntityTypeShape EntityType="MyCinemaDBModel.Seat" Width="1.5" PointX="8.875" PointY="0.5" />
+        <AssociationConnector Association="MyCinemaDBModel.FK_Seat_ToRoom" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

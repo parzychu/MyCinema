@@ -1,16 +1,16 @@
 ﻿<template>
-    <div>
-        <h1>PickSeats</h1>
+    <section class="section is-fullheight my-pick-cinema">
+        <div class="section-title">
+            <h2 class="title is-2">Pick Seats</h2>
+        </div>
+        <div class="section-body">
+            <seats-picker @changed="onSeatsPickerChanged"></seats-picker>
 
-        <seats-picker @changed="onSeatsPickerChanged"></seats-picker>
+            {{pickedSeats}}
 
-        {{pickedSeats}}
-
-        <router-link :to="{name: 'LogInPage', params: { reservationId: pickedSeats[0]}}"
-            class="button is-primary">Dalej</router-link>
-  </div>
-    </div> 
-
+            <router-link :to="{name: 'LogInPage', params: { reservationId: pickedSeats[0]}}" class="button is-primary">Dalej</router-link>
+        </div>
+    </section>
 </template>
 
 <script>

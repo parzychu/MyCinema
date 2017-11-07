@@ -5,11 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="66099f5464b045ed97b743a4c12e2b73" Name="Diagram1">
-        <EntityTypeShape EntityType="MyCinemaDBModel.Cinema" Width="1.5" PointX="2.75" PointY="0.5" />
-        <EntityTypeShape EntityType="MyCinemaDBModel.Movie" Width="1.5" PointX="7" PointY="0.75" />
-        <EntityTypeShape EntityType="MyCinemaDBModel.Seance" Width="1.5" PointX="5" PointY="0.5" />
+        <EntityTypeShape EntityType="MyCinemaDBModel.Cinema" Width="1.5" PointX="6" PointY="0.5" />
+        <EntityTypeShape EntityType="MyCinemaDBModel.Movie" Width="1.5" PointX="10.25" PointY="0.75" />
+        <EntityTypeShape EntityType="MyCinemaDBModel.Seance" Width="1.5" PointX="8.25" PointY="0.5" />
         <AssociationConnector Association="MyCinemaDBModel.FK_Seance_ToCinema" />
         <AssociationConnector Association="MyCinemaDBModel.FK_Seance_To_Movie" />
+        <EntityTypeShape EntityType="MyCinemaDBModel.Room" Width="1.5" PointX="3.625" PointY="0.75" />
+        <AssociationConnector Association="MyCinemaDBModel.FK_Room_ToCinema" />
+        <EntityTypeShape EntityType="MyCinemaDBModel.Seat" Width="1.5" PointX="1.5" PointY="1" />
+        <AssociationConnector Association="MyCinemaDBModel.FK_Seat_ToRoom" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
