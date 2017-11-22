@@ -5,9 +5,17 @@ using System.Linq.Expressions;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
+using WebGrease.Css.Extensions;
 
 namespace MyCinema.Areas.Reservation.Controllers
 {
+    public class ReservationInfo
+    {
+        public int seanceId { get; set; }
+        public int[] seatIds { get; set; }
+    }
+
     public class ReservationController : Controller
     {
         public class SeanceDTO
@@ -25,7 +33,7 @@ namespace MyCinema.Areas.Reservation.Controllers
         // GET: Reservation/Reservation
         public ActionResult GetCinemas()
         {
-            MyCinemaDBEntities2 context = new MyCinemaDBEntities2();
+            MyCinemaDB context = new MyCinemaDB();
             
             var cinemaList = context.Seances
                 .Where(seance => seance.MovieId == 4)
@@ -44,7 +52,7 @@ namespace MyCinema.Areas.Reservation.Controllers
 
         public ActionResult GetMovies()
         {
-            MyCinemaDBEntities2 context = new MyCinemaDBEntities2();
+            MyCinemaDB context = new MyCinemaDB();
 
             var movieList = context.Seances.GroupBy(seance => seance.MovieId).Select(seance => new
                 {
@@ -60,7 +68,7 @@ namespace MyCinema.Areas.Reservation.Controllers
 
         public ActionResult GetDates(int cinemaId)
         {
-            MyCinemaDBEntities2 context = new MyCinemaDBEntities2();
+            MyCinemaDB context = new MyCinemaDB();
 
             var dateList = context.Seances.Where(seance => seance.CinemaId == cinemaId).GroupBy(seance => seance.Date).Select(date =>
                 new 
@@ -76,6 +84,69 @@ namespace MyCinema.Areas.Reservation.Controllers
             
 
             return Json(dateList);
+        }
+
+        public ActionResult CreateReservation(ReservationInfo info)
+        {
+            var reservation = new Models.Reservation();
+
+            reservation.SeanceId = info.seanceId;
+
+            using (var db = new MyCinemaDB())
+            {
+                db.Reservations.Add(reservation);
+
+//               var seats = db.Seats
+//                    .Where(seat => reservation.SeanceId == info.seanceId && info.seatIds.Contains(seat.Id))
+//                    .Select(seat =>
+//                    {
+//                        id:  seat.Id
+//                    }).ToList();
+                db.SaveChanges();
+            }
+
+            return Json(reservation.Id);
+        }
+
+        public ActionResult SeatsInSeance()
+        {
+            using (var db = new MyCinemaDB())
+            {
+                var seatsInSeance = db.Seances
+                    .Where(s => s.Id == 3)
+                    .SelectMany(s => s.SeatsSeances
+                    .Select(seats => seats.SeatId))
+                    .ToList();
+
+                return Json(seatsInSeance);
+            }
+
+        }
+
+        public ActionResult Confirm(ReservationInfo data)
+        {
+            var reservationId = 4;
+
+            using (var db = new MyCinemaDB())
+            {
+                db.Reservations
+                    .Where(r => r.Id == reservationId)
+                    .ForEach(r => r.UserId = User.Identity.GetUserId());
+
+                var seances = db.Reservations.Where(r => r.Id == reservationId)
+                    .Select(r => r.Seance.SeatsSeances.Where(seatSeance => seatSeance.SeanceId == r.Seance.Id))
+                    .ToList();
+
+                seances.ForEach(s => s.ForEach(
+                    seatSeance =>
+                    {
+                        seatSeance.ReservationId = reservationId;
+                        seatSeance.IsAvaliable = false;
+                    }));
+                db.SaveChanges();
+
+                return new HttpStatusCodeResult(200);
+            }
         }
     }
 }

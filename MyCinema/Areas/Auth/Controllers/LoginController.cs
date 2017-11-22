@@ -8,9 +8,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using MyCinema.Areas.Auth.Models;
 using MyCinema.Areas.Auth.Services;
 using Newtonsoft.Json.Serialization;
@@ -47,6 +49,12 @@ namespace MyCinema.Areas.Auth.Controllers
             }
 
             return new HttpStatusCodeResult(200);
+        }
+
+        public async Task<ActionResult> Login(string userName, string password)
+        {
+            IdentityUser result = await _repo.FindUser(userName, password);
+            return Json(result);
         }
 
         protected override void Dispose(bool disposing)

@@ -6,3 +6,5 @@ Libs/
 node_modules/
 .vs/
 npm-debug.log
+DefaultConnection.mdf
+DefaultConnection_log.ldf

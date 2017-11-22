@@ -8,6 +8,8 @@
 
             {{pickedSeats}}
 
+        <button v-on:click="reserveSeats()">Reserve seats</button>
+
             <router-link :to="{name: 'LogInPage', params: { reservationId: pickedSeats[0]}}" class="button is-primary">Dalej</router-link>
         </div>
     </section>
@@ -30,6 +32,19 @@
             onSeatsPickerChanged: function(value) {
                 this.pickedSeats = value;
                 console.log(value)
+            },
+            reserveSeats: function() {
+                var reservationInfo = {
+                    seanceId: this.$route.params.seanceId,
+                    seatIds: this.pickedSeats
+                }
+
+                var dopa = "dsada"
+                axios.post("Reservation/Reservation/CreateReservation", reservationInfo)
+                    .then((res => {
+                        this.$router.push({ name: 'ConfirmReservation', params: { reservationId: res.data }});
+                    }).bind(this));
+                axios.post("Reservation/Reservation/SeatsInSeance")
             }
         }
     }

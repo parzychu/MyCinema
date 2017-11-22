@@ -5,6 +5,7 @@
     import PickSeance from './Views/PickSeance.vue';
     import PickSeats from './Views/PickSeats.vue';
     import LogInPage from './Views/LogInPage.vue';
+    import ConfirmReservation from './Views/ConfirmReservation.vue';
 
     export default [
         { name: 'PickMovie', path: '/Reservation', component: PickMovie },
@@ -12,5 +13,6 @@
         { name: 'PickSeance', path: '/Reservation/:movieId/:cinemaId', component: PickSeance },
         { name: 'PickSeats', path: '/Reservation/:movieId/:cinemaId/:seanceId', component: PickSeats },
         { name: 'LogInPage', path: '/Reservation/:movieId/:cinemaId/:seanceId/:reservationId', component: LogInPage },
+        { name: 'ConfirmReservation', path: '/Reservation/:movieId/:cinemaId/:seanceId/:reservationId/', component: ConfirmReservation },
     ]
 </script>

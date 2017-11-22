@@ -36,43 +36,7 @@
         name: "PickSeance",
         data: function () {
             return {
-                seanceDates: [{
-                    day: "28.10",
-                    hours: [{
-                        hour: "10:40",
-                        id: "11"
-                    }, {
-                        hour: "14:40",
-                        id: "13"
-                    }, {
-                        hour: "18:40",
-                        id: "15"
-                    }]
-                }, {
-                    day: "29.10",
-                    hours: [{
-                        hour: "10:20",
-                        id: "16"
-                    }, {
-                        hour: "14:20",
-                        id: "18"
-                    }, {
-                        hour: "18:20",
-                        id: "19"
-                    }]
-                }, {
-                    day: "30.10",
-                    hours: [{
-                        hour: "10:30",
-                        id: "21"
-                    }, {
-                        hour: "14:30",
-                        id: "23"
-                    }, {
-                        hour: "18:30",
-                        id: "25"
-                    }]
-                }],
+                seanceDates: [],
                 pickedDayHours: [],
                 seanceId: null
             };

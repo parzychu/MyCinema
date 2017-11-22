@@ -7,7 +7,7 @@
             <div class="column is-6 is-offset-3"> 
                 <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                        <input class="input is-medium" type="email" placeholder="Email">
+                        <input class="input is-medium" type="email" v-model="login" placeholder="Login">
                         <span class="icon is-medium is-left">
       <i class="fa fa-envelope"></i>
     </span>
@@ -18,16 +18,15 @@
                 </div>
                 <div class="field">
                     <p class="control has-icons-left">
-                        <input class="input is-medium" type="password" placeholder="Password">
+                        <input class="input is-medium" type="password" v-model="password" placeholder="Password">
                         <span class="icon is-medium is-left">
       <i class="fa fa-lock"></i>
     </span>
                     </p>
                 </div>
-                <router-link :to="{name: 'PickSeats'}" class="button is-primary is-medium">
-                    Dalej
-                </router-link>
                 
+
+                <button v-on:click="logIn()">Login</button>
                 </div>
         </div>
         </section>
@@ -38,7 +37,9 @@
         name: 'LogInPage',
         data() {
             return {
-                movies: []
+                movies: [],
+                login: "",
+                password: ""
             }
         },
         created: function () {
@@ -48,6 +49,15 @@
                 }).catch((e) => {
                     console.error(e);
                 });
+        },
+        methods: {
+            logIn() {
+                // Takiseer SuperPass
+                axios.post("Auth/Login/Login", {
+                    "userName": this.login,
+                    "password": this.password
+                })
+            }
         }
     }
 </script>
