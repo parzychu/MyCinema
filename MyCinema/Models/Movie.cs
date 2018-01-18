@@ -10,9 +10,15 @@ namespace MyCinema
     public partial class Movie
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Movie()
+        public Movie() { }
+
+        public Movie(int id, string title, DateTime release, string directorName, short runningTime)
         {
-            Seances = new HashSet<Seance>();
+            Id = id;
+            Title = title;
+            Release = release;
+            DirectorName = directorName;
+            RunningTime = runningTime;
         }
 
         public int Id { get; set; }
@@ -29,8 +35,7 @@ namespace MyCinema
         public string DirectorName { get; set; }
 
         public short RunningTime { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
         public virtual ICollection<Seance> Seances { get; set; }
     }
 }

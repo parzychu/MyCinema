@@ -13,6 +13,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using MyCinema.Areas.Auth.Models;
 using MyCinema.Areas.Auth.Services;
 using Newtonsoft.Json.Serialization;
@@ -35,8 +37,7 @@ namespace MyCinema.Areas.Auth.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Json(ModelState);
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(499);
             }
 
             IdentityResult result = await _repo.RegisterUser(userModel);
@@ -51,11 +52,57 @@ namespace MyCinema.Areas.Auth.Controllers
             return new HttpStatusCodeResult(200);
         }
 
+        public ActionResult Identity()
+        {
+            if (HttpContext.User.Identity.IsAuthenticated == false)
+            {
+              return Json(HttpContext.User.Identity.IsAuthenticated);
+            }
+
+          var userInfo = new
+          {
+            Login = HttpContext.User.Identity.Name,
+            IsAuthenticated = HttpContext.User.Identity.IsAuthenticated
+          };
+
+            return Json(userInfo);
+        }
+
         public async Task<ActionResult> Login(string userName, string password)
         {
+              var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+              var authManager = HttpContext.GetOwinContext().Authentication;
+
+              IdentityUser user = userManager.Find(userName, password);
+
+         
+              if (user != null)
+              {
+                  var ident = userManager.CreateIdentity(user,
+                      DefaultAuthenticationTypes.ApplicationCookie);
+                  authManager.SignIn(
+                      new AuthenticationProperties { IsPersistent = false }, ident);
+        var userInfo = new
+        {
+          Login = HttpContext.User.Identity.Name,
+          IsAuthenticated = HttpContext.User.Identity.IsAuthenticated
+        };
+                return Json(userInfo);
+              }
+            
+            return Json("Invalid username or password");
+
+
             IdentityUser result = await _repo.FindUser(userName, password);
             return Json(result);
         }
+
+      public ActionResult Logout()
+      {
+        Request.GetOwinContext().Authentication.SignOut();
+
+        return new HttpStatusCodeResult(200);
+      }
 
         protected override void Dispose(bool disposing)
         {

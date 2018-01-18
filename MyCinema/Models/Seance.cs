@@ -9,27 +9,26 @@ namespace MyCinema
     using System.Data.Entity.Spatial;
 
     [Table("Seance")]
-    public partial class Seance
+    public class Seance
     {
+      public Seance()
+      {
+      }
+
+      [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-
-        public int CinemaId { get; set; }
-
-        public int MovieId { get; set; }
-
+        
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
 
         [Required]
-        [StringLength(10)]
         public string Time { get; set; }
-
-        public int RoomId { get; set; }
+        
+        public virtual Movie Movie { get; set; }
+        
+        public virtual Room Room { get; set; }
 
         public virtual Cinema Cinema { get; set; }
-
-        public virtual Movie Movie { get; set; }
-
-        public virtual ICollection<SeatSeance> SeatsSeances { get; set; }
     }
 }

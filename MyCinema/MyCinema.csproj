@@ -45,11 +45,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoPoco, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoPoco.1.0.0.0\lib\AutoPoco.dll</HintPath>
+    </Reference>
+    <Reference Include="Bogus, Version=20.0.2.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.20.0.2\lib\net40\Bogus.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="FizzWare.NBuilder, Version=5.0.0.138, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NBuilder.5.0.0\lib\net40\FizzWare.NBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -202,11 +211,84 @@
     <Compile Include="Areas\Auth\Services\cc.cs" />
     <Compile Include="Areas\Home\Controllers\MoviesController.cs" />
     <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
+    <Compile Include="Areas\PriceList\PriceListAreaRegistration.cs" />
+    <Compile Include="Areas\Repertoire\RepertoireAreaRegistration.cs" />
     <Compile Include="Areas\Reservation\Controllers\ReservationController.cs" />
     <Compile Include="Areas\Reservation\ReservationAreaRegistration.cs" />
-    <Compile Include="Migrations\201711212349032_InitialCreate.cs" />
-    <Compile Include="Migrations\201711212349032_InitialCreate.Designer.cs">
-      <DependentUpon>201711212349032_InitialCreate.cs</DependentUpon>
+    <Compile Include="Areas\Reservation\Services\GenerateDataService.cs" />
+    <Compile Include="Areas\User\Controllers\UserController.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Migrations\201711251400464_InitialCreate.cs" />
+    <Compile Include="Migrations\201711251400464_InitialCreate.Designer.cs">
+      <DependentUpon>201711251400464_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711251402573_migration.cs" />
+    <Compile Include="Migrations\201711251402573_migration.Designer.cs">
+      <DependentUpon>201711251402573_migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261132039_migration1.cs" />
+    <Compile Include="Migrations\201711261132039_migration1.Designer.cs">
+      <DependentUpon>201711261132039_migration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261134090_migration2.cs" />
+    <Compile Include="Migrations\201711261134090_migration2.Designer.cs">
+      <DependentUpon>201711261134090_migration2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261149579_migration3.cs" />
+    <Compile Include="Migrations\201711261149579_migration3.Designer.cs">
+      <DependentUpon>201711261149579_migration3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261159202_migration4.cs" />
+    <Compile Include="Migrations\201711261159202_migration4.Designer.cs">
+      <DependentUpon>201711261159202_migration4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261209566_migration5.cs" />
+    <Compile Include="Migrations\201711261209566_migration5.Designer.cs">
+      <DependentUpon>201711261209566_migration5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261211263_migration6.cs" />
+    <Compile Include="Migrations\201711261211263_migration6.Designer.cs">
+      <DependentUpon>201711261211263_migration6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261215455_migration7.cs" />
+    <Compile Include="Migrations\201711261215455_migration7.Designer.cs">
+      <DependentUpon>201711261215455_migration7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261223176_migration8.cs" />
+    <Compile Include="Migrations\201711261223176_migration8.Designer.cs">
+      <DependentUpon>201711261223176_migration8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261224456_migration9.cs" />
+    <Compile Include="Migrations\201711261224456_migration9.Designer.cs">
+      <DependentUpon>201711261224456_migration9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261704449_migration10.cs" />
+    <Compile Include="Migrations\201711261704449_migration10.Designer.cs">
+      <DependentUpon>201711261704449_migration10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261706420_migration11.cs" />
+    <Compile Include="Migrations\201711261706420_migration11.Designer.cs">
+      <DependentUpon>201711261706420_migration11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261709113_migration12.cs" />
+    <Compile Include="Migrations\201711261709113_migration12.Designer.cs">
+      <DependentUpon>201711261709113_migration12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711261822194_migration13.cs" />
+    <Compile Include="Migrations\201711261822194_migration13.Designer.cs">
+      <DependentUpon>201711261822194_migration13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801150101568_Add reservation times.cs" />
+    <Compile Include="Migrations\201801150101568_Add reservation times.Designer.cs">
+      <DependentUpon>201801150101568_Add reservation times.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801150105391_Reservation confirmed flag.cs" />
+    <Compile Include="Migrations\201801150105391_Reservation confirmed flag.Designer.cs">
+      <DependentUpon>201801150105391_Reservation confirmed flag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801150114403_Reservation times.cs" />
+    <Compile Include="Migrations\201801150114403_Reservation times.Designer.cs">
+      <DependentUpon>201801150114403_Reservation times.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cinema.cs" />
@@ -247,6 +329,11 @@
     <Content Include="Areas\Reservation\Views\web.config" />
     <Content Include="Areas\Reservation\Views\Reservation.vue" />
     <Content Include="Areas\Auth\Views\web.config" />
+    <Content Include="Areas\Repertoire\Views\web.config" />
+    <Content Include="Areas\PriceList\Views\web.config" />
+    <Content Include="Areas\PriceList\PriceList.vue" />
+    <Content Include="Areas\Repertoire\Index.vue" />
+    <Content Include="Areas\User\Views\web.config" />
     <None Include="Libs\jquery-1.10.2.intellisense.js" />
     <Content Include="Libs\jquery-1.10.2.js" />
     <Content Include="Libs\jquery-1.10.2.min.js" />
@@ -268,14 +355,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Styles\Main.scss" />
     <Content Include="Styles\Variables.scss" />
+    <Content Include="Scripts\auth.vue" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -285,9 +371,18 @@
     <Folder Include="Areas\Home\NewFolder1\" />
     <Folder Include="Areas\Home\Views\Movies\" />
     <Folder Include="Areas\Home\Views\Shared\" />
+    <Folder Include="Areas\PriceList\Controllers\" />
+    <Folder Include="Areas\PriceList\Models\" />
+    <Folder Include="Areas\PriceList\Views\Shared\" />
+    <Folder Include="Areas\Repertoire\Controllers\" />
+    <Folder Include="Areas\Repertoire\Models\" />
+    <Folder Include="Areas\Repertoire\Views\Shared\" />
     <Folder Include="Areas\Reservation\Models\" />
     <Folder Include="Areas\Reservation\Views\Reservation\" />
     <Folder Include="Areas\Reservation\Views\Shared\" />
+    <Folder Include="Areas\User\Models\" />
+    <Folder Include="Areas\User\Views\Shared\" />
+    <Folder Include="Areas\User\Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -308,8 +403,59 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711212349032_InitialCreate.resx">
-      <DependentUpon>201711212349032_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201711251400464_InitialCreate.resx">
+      <DependentUpon>201711251400464_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711251402573_migration.resx">
+      <DependentUpon>201711251402573_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261132039_migration1.resx">
+      <DependentUpon>201711261132039_migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261134090_migration2.resx">
+      <DependentUpon>201711261134090_migration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261149579_migration3.resx">
+      <DependentUpon>201711261149579_migration3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261159202_migration4.resx">
+      <DependentUpon>201711261159202_migration4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261209566_migration5.resx">
+      <DependentUpon>201711261209566_migration5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261211263_migration6.resx">
+      <DependentUpon>201711261211263_migration6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261215455_migration7.resx">
+      <DependentUpon>201711261215455_migration7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261223176_migration8.resx">
+      <DependentUpon>201711261223176_migration8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261224456_migration9.resx">
+      <DependentUpon>201711261224456_migration9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261704449_migration10.resx">
+      <DependentUpon>201711261704449_migration10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261706420_migration11.resx">
+      <DependentUpon>201711261706420_migration11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261709113_migration12.resx">
+      <DependentUpon>201711261709113_migration12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711261822194_migration13.resx">
+      <DependentUpon>201711261822194_migration13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801150101568_Add reservation times.resx">
+      <DependentUpon>201801150101568_Add reservation times.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801150105391_Reservation confirmed flag.resx">
+      <DependentUpon>201801150105391_Reservation confirmed flag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801150114403_Reservation times.resx">
+      <DependentUpon>201801150114403_Reservation times.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

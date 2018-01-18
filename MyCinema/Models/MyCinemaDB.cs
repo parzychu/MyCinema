@@ -14,6 +14,7 @@ namespace MyCinema
         public MyCinemaDB()
             : base("name=MyCinemaDB")
         {
+            //Database.SetInitializer<MyCinemaDB>(new DropCreateDatabaseIfModelChanges<MyCinemaDB>());
         }
 
         public virtual DbSet<Cinema> Cinemas { get; set; }
@@ -32,11 +33,7 @@ namespace MyCinema
                 .HasMany(e => e.Rooms)
                 .WithRequired(e => e.Cinema)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Cinema>()
-                .HasOptional(e => e.Seance)
-                .WithRequired(e => e.Cinema);
-
+            
             modelBuilder.Entity<Movie>()
                 .Property(e => e.Title)
                 .IsUnicode(false);
@@ -50,7 +47,7 @@ namespace MyCinema
                 .HasMany(e => e.Seats)
                 .WithRequired(e => e.Room)
                 .WillCascadeOnDelete(false);
-
+            
         }
     }
 }

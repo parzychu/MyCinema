@@ -12,7 +12,8 @@
         { name: 'PickCinema', path: '/Reservation/:movieId', component: PickCinema },
         { name: 'PickSeance', path: '/Reservation/:movieId/:cinemaId', component: PickSeance },
         { name: 'PickSeats', path: '/Reservation/:movieId/:cinemaId/:seanceId', component: PickSeats },
+        { name: 'ConfirmReservation', path: '/Reservation/:movieId/:cinemaId/:seanceId/:reservationId/', 
+            component: ConfirmReservation, meta: { requiresAuth: true, redirect: {name: 'LogInPage' }} },
         { name: 'LogInPage', path: '/Reservation/:movieId/:cinemaId/:seanceId/:reservationId', component: LogInPage },
-        { name: 'ConfirmReservation', path: '/Reservation/:movieId/:cinemaId/:seanceId/:reservationId/', component: ConfirmReservation },
     ]
 </script>

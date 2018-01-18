@@ -2,6 +2,13 @@
 
 <template>
     <div>
+        Movie: {{reservationDetails.movieTitle}}
+        Cinema: {{reservationDetails.cinema}}
+        Date: {{reservationDetails.date}} {{reservationDetails.time}}
+        <div v-for="seat in reservationDetails.seats">
+            <div>{{seat.column}}</div>
+            <div>{{seat.row}}</div>
+        </div>
         <button v-on:click="confirmReservation()">Confirm reservation</button>
     </div>
 </template>
@@ -11,19 +18,17 @@ export default {
         name: 'ConfirmReservation',
         data() {
             return {
+                reservationDetails: {}
             }
         },
         created: function () {
+            axios.post("Reservation/Reservation/ReservationDetails", {reservationId: this.$route.params.reservationId})
+                .then((res) => this.reservationDetails = res.data);
         },
         methods: {
             confirmReservation() {
                 // Takiseer SuperPass
-                axios.post("Reservation/Reservation/Confirm", {
-                    movieId: 2,
-                    cinemaId: 7,
-                    seanceId: 1,
-                    reservationId: 4,
-                });
+                axios.post("Reservation/Reservation/Confirm", {reservationId: this.$route.params.reservationId});
             }
         }
     }

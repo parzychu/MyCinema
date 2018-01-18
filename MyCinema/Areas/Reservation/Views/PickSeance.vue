@@ -21,10 +21,9 @@
                 {{hour.hour}}
             </div>
         </div>
-        <router-link v-if="seanceId"
-            :to="{name: 'PickSeats', params: { seanceId: seanceId}}" 
-            class="button is-primary">
-                Dalej
+        <router-link  :to="{name: 'PickSeats', params: { seanceId: seanceId}}"  class="reservation-next-btn">
+        <span>Dalej</span>
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
         </router-link>
         </div>
     </section>
@@ -64,36 +63,53 @@
     };
 </script>
 <style lang="scss">
-    @import "Styles/Main";
     @import "Styles/Variables";
 
     .my-pick-seance {
         @mixin pick-seance-box() {
-            border: 1px solid $my-color-primary;
+            position: relative;
             box-shadow: 0px 0px 5px $my-color-primary;
             background: white;
             color: $my-color-primary;
-            border-radius: 4px;
+            // border-radius: 4px;
             
             padding: 10px 20px;
-            margin: 0 10px;
+            margin: 10px;
+            border-left: 3px solid transparent;
+            transition: background-color .2s, color .2s;
 
             &.is-active {
-                border: 1px solid white;
                 box-shadow: 0px 0px 5px white;
-                background: $my-color-primary;
-                color: white;
+        color: white;
+        background-color: $my-color-primary;
+        border-left: 3px solid $my-color-primary;
             }
+            &:hover {
+          box-shadow: 0px 0px 30px rgba(0,0, 0, 0.15);
+              z-index: 5;
+
+              &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background-color: rgba($my-color-primary, .10);
+              }
+        }
         }
 
         .pick-seance-container {
             display: flex;
             justify-content: center;
             margin-bottom: 60px;
+            flex-wrap: wrap;
         }
 
         .pick-seance-day {
             @include pick-seance-box;
+            margin-bottom: 20px;
             
             font-size: 36px;
         }

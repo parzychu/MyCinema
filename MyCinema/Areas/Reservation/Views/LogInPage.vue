@@ -1,7 +1,7 @@
 ﻿<template>
     <section class="section is-fullheight my-pick-cinema">
         <div class="section-title">
-            <h2 class="title is-2">Log in</h2>
+            <h2 class="title is-2">Log in Takiseer SuperPass</h2>
         </div>
         <div class="section-body">
             <div class="column is-6 is-offset-3"> 
@@ -25,14 +25,18 @@
                     </p>
                 </div>
                 
-
-                <button v-on:click="logIn()">Login</button>
+<div v-on:click="logIn()" class="reservation-next-btn">
+        <span>Zaloguj</span>
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+</div>
                 </div>
         </div>
         </section>
 </template>
 
 <script>
+    import auth from "../../../Scripts/auth.js";
+
     export default {
         name: 'LogInPage',
         data() {
@@ -52,11 +56,12 @@
         },
         methods: {
             logIn() {
+
                 // Takiseer SuperPass
-                axios.post("Auth/Login/Login", {
-                    "userName": this.login,
-                    "password": this.password
-                })
+                auth.login(this.login, this.password).then((res) => {
+                    console.log(res);
+                   // this.$router.go({ name: 'ConfirmReservation'});
+                });
             }
         }
     }

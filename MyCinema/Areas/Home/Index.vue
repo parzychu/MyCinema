@@ -31,6 +31,5 @@
 </script>
 
 <style lang="scss">
-    @import "Styles/Main";
 
 </style>

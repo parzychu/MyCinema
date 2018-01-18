@@ -1,15 +1,14 @@
 ﻿
 <template>
     <div class="my-movie-preview">
-        
+        <div class="movie-preview-title">{{ movie.name }}</div>
         <img class="bg-poster" src="https://media.multikino.pl/thumbnails/50/rc/MjkwMEEy/eyJ0aHVtYm5haWwiOnsic2l6ZSI6WyIxMDAwMCIsIjEwMDAwIl0sIm1vZGUiOiJpbnNldCJ9fQ==/uploads/images/films_and_events/twoj-vincent-pl_b9d917af7b.JPG"/>
         <div class="movie-preview-overlay">
-            <router-link to="/Reservation/2"
+            <router-link :to="{name: 'PickCinema', params: {movieId: movie.id}}"
             class="button is-medium is-outlined is-inverted is-primary">Rezerwuj</router-link>
         </div>
         <div class="movie-preview-info">
             <div class="movie-preview-duration"><span class="icon is-small"><i class="fa fa-film"></i></span><span>{{movie.runningTime}} min</span></div>
-            <div class="movie-preview-title">{{ movie.name }}</div>
         </div>
         
 
@@ -72,10 +71,12 @@
         }
 
         .movie-preview-title {
-            color: #2f3238;
+            color: white;
             font-size: 1.25rem;
             font-weight: 400;
             line-height: 1.25;
+            padding: 10px 15px 15px;
+            text-align: center;
         }
         
         .movie-preview-duration {

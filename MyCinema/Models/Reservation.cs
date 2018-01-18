@@ -17,6 +17,14 @@ namespace MyCinema.Models
             
         public int SeanceId { get; set; }
 
+        public int Test { get; set; }
+
+        public bool IsConfirmed { get; set; }
+        
+        public DateTime? CreatedTime { get; set; }
+        
+        public DateTime? ConfirmedTime { get; set; }
+
         public virtual IdentityUser User { get; set; }
 
         public virtual Seance Seance { get; set; }

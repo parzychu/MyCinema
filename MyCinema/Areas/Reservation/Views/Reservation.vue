@@ -28,6 +28,5 @@
 </script>
 
 <style lang="scss">
-    @import "Styles/Main";
     @import "font-awesome";
 </style>

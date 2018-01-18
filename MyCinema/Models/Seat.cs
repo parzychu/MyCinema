@@ -9,19 +9,27 @@ namespace MyCinema
     using System.Data.Entity.Spatial;
 
     [Table("Seat")]
-    public partial class Seat
+    public class Seat
     {
+      public Seat()
+      {
+      }
+
+      public Seat(int id, int row, int column, int roomId)
+        {
+            Id = id;
+            Row = row;
+            Column = column;
+            RoomId = roomId;
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
         public int Row { get; set; }
 
         public int Column { get; set; }
-
-        public int? Status { get; set; }
         
-        public bool IsAvaliable { get; set; } 
-
         public int RoomId { get; set; }
 
         public virtual Room Room { get; set; }

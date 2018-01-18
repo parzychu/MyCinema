@@ -7,7 +7,19 @@ module.exports = {
             {
                 test: /\.vue$/,
                 use: {
-                    loader: 'vue-loader'
+                    loader: 'vue-loader',
+                    options: {
+                        loaders: {
+                            scss: ExtractTextPlugin.extract({
+                                fallback: 'style-loader', // The backup style loader
+                                use: ['css-loader', 'sass-loader']
+                            }), 
+                            css: ExtractTextPlugin.extract({
+                                use: 'css-loader',
+                                fallback: 'vue-style-loader'
+                            })
+                        }
+                      }
                 }
             },
             {
@@ -22,24 +34,16 @@ module.exports = {
             }, {
             }, {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader', // The backup style loader
+                    use: 'css-loader'
+                }),
             },{
                 test: /\.scss$/,
-//                use: [{
-//                    loader: "style-loader" // creates style nodes from JS strings
-//                }, {
-//                        loader: "css-loader", options: {
-//                        sourceMap: true
-//                    } // translates CSS into CommonJS
-//                }, {
-//                        loader: "sass-loader", options: {
-//                        sourceMap: true
-//                    } // compiles Sass to CSS
-//                }],
-                loader: ExtractTextPlugin.extract(
-                    'style', // The backup style loader
-                    'css?sourceMap!sass?sourceMap'
-                ),
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader', // The backup style loader
+                    use: ['css-loader', 'sass-loader']
+                }),
             }
         ]
     },
@@ -57,6 +61,6 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
-        new ExtractTextPlugin('./dist/style.css')
+        new ExtractTextPlugin('style.css')
     ]
 };

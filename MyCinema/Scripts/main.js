@@ -7,21 +7,49 @@ Vue.use(VueRouter);
 
 import Buefy from 'buefy';
 Vue.use(Buefy);
-import 'buefy/lib/buefy.css';
+// import 'buefy/lib/buefy.css';
+// import Style from '../Styles/Main.scss';
 
+import Auth from "./auth.js";
 import Home from '../Areas/Home/Index.vue';
 import ReservationRoutes from '../Areas/Reservation/Routes.vue';
 import App from "./app.vue";
 import Navbar from "../Components/Navbar.vue";
 import MoviePreviewItem from 'Components/MoviePreview/MoviePreview.vue';
+import Repertoire from '../Areas/Repertoire/Index.vue';
+import PriceList from '../Areas/PriceList/PriceList.vue';
+import LogInPage from '../Areas/Reservation/Views/LogInPage.vue';
+import Registration from '../Areas/Auth/Views/Registration.vue';
+import UserRoutes from '../Areas/User/Routes.vue';
+
 
 const routes = [
     ...ReservationRoutes,
-    { path: '/Home', component: Home }
+    ...UserRoutes,
+    { path: '/Repertoire', component: Repertoire },
+    { path: '/Home', component: Home },
+    { path: '/PriceList', component: PriceList },
+    { path: '/Login', component: LogInPage },
+    { path: '/Registration', component: Registration}
 ];
 
-const router = new VueRouter({
+let router = new VueRouter({
     routes
+});
+
+Auth.checkAuth();
+
+router.beforeEach((to, from, next) => {
+    console.log(to, from)
+
+    if (to.meta.requiresAuth) {
+        console.log(Auth)
+
+        if (!Auth.user.authenticated)
+            next(to.meta.redirect);
+    }
+
+    next();
 });
 
 const NotFound = { template: '<p>Page not found</p>' }

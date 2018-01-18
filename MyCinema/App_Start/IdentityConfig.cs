@@ -20,9 +20,8 @@ namespace MyCinema
             app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
             app.CreatePerOwinContext<RoleManager<AppRole>>((options, context) =>
             {
-                var authContext = context.Get<MyCinemaDB>();
                 return new RoleManager<AppRole>(
-                    new RoleStore<AppRole>(authContext));
+                    new RoleStore<AppRole>(context.Get<MyCinemaDB>()));
             });
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
