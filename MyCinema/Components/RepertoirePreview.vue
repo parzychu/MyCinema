@@ -2,18 +2,75 @@
 
 <template>
     <div>
-        <button v-on:click="previousDay()">&lt;</button>{{selectedDate}}<button v-on:click="nextDay()">></button>
+
+<b-field>
+    <b-select placeholder="Wybierz kino">
+        <option>
+            MyCinema Białystok
+        </option>
+    </b-select>
+
+<div class="field has-addons">
+  <p class="control">
+    <button class="button is-primary" v-on:click="previousDay()">
+      <span class="icon">
+        <i class="fa fa-arrow-left"></i>
+      </span>
+    </button>
+  </p>
+  <p class="control">
+      <b-datepicker
+        placeholder="Click to select..."
+        icon="calendar"
+        v-model="selectedDate">
+     </b-datepicker>
+  </p>
+  <p class="control">
+    <button class="button is-primary" v-on:click="nextDay()">
+      <span class="icon">
+        <i class="fa fa-arrow-right"></i>
+      </span>
+    </button>
+  </p>
+</div>
+
         
-        <h2 class="title is-2">Repertoire</h2>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr);">
-            <div v-for="(movie, index) in repertoire" :key="index" style="display: flex">
-                <div>{{movie.title}}</div>
-                <div v-for="(seance, index) in movie.seances" :key="index" v-on:click="goToSeance(seance.id)">
-                    {{seance.id}} - {{seance.time}}
+</b-field>
+            <b-table
+            :data="repertoire"
+            :striped="true"
+            :hoverable="true"
+            :mobile-cards="true">
+
+            <template slot-scope="props">
+
+                <b-table-column label="Tytuł filmu">
+                    {{ props.row.title }}
+                </b-table-column>
+
+
+                <b-table-column label="Zarezerwuj">
+                    <div class="field is-grouped" >
+                    <!-- // {{seance.id}} -->
+                     <p class="control" v-for="(seance, index) in props.row.seances" :key="index"
+                       >
+                       <button class="button is-primary"
+                       v-on:click="goToSeance(seance.id)">{{seance.time}}</button>
+                     </p>
                     </div>
-                </div>
-            </div>
-        </div>       
+                    
+                </b-table-column>
+            </template>
+
+            <template slot="empty">
+                <section class="section">
+                    <div class="content has-text-grey has-text-centered">
+                       
+                        <p>Tego dnia nie wyświetlamy filmów w tym kinie.</p>
+                    </div>
+                </section>
+            </template>
+        </b-table>
     </div>
 </template>
 

@@ -1,15 +1,21 @@
-﻿<template>
-    <section class="section is-fullheight my-pick-cinema">
-        <div class="section-title">
-            <h2 class="title is-2">Pick Seats</h2>
-        </div>
+﻿
+<template>
+    <section class="section">
+        <nav class="breadcrumb has-arrow-separator is-large" aria-label="breadcrumbs">
+            <ul>
+                <li><router-link :to="{name: 'PickMovie'}">Film</router-link></li>
+                <li><router-link :to="{name: 'PickCinema'}">Kino</router-link></li>
+                <li><router-link :to="{name: 'PickSeance'}">Data i godzina</router-link></li>
+                <li class="is-active"><router-link :to="{name: 'PickSeats'}" aria-current="page"> Wybierz Miejsca</router-link></li>
+            </ul>
+        </nav>
         <div class="pick-cinema-screen">Ekran</div>
-        <div class="section-body">
-            <seats-picker @changed="onSeatsPickerChanged" :seanceId="this.$route.params.seanceId"></seats-picker>
-
-            {{pickedSeats}}
-
-        <button v-on:click="reserveSeats()" class="reservation-next-btn"><span>Dalej</span></button>
+        
+        <seats-picker @changed="onSeatsPickerChanged" :seats="seats"></seats-picker>
+        
+        <div v-on:click="reserveSeats()" class="reservation-btn-next">
+            <span>Dalej</span>
+            <i class="fa fa-arrow-circle-right level-left" aria-hidden="true"></i>
         </div>
     </section>
 </template>
@@ -24,13 +30,24 @@
         },
         data: function() {
             return {
+                seats: [],
                 pickedSeats: []
             }
         },
+        created: function () {
+            this.getSeats();
+        },
         methods: {
+            getSeats: function() {
+                axios.post("Reservation/Reservation/GetSeats", {seanceId: this.$route.params.seanceId})
+                .then((res) => {
+                    this.seats = res.data;
+                }).catch((e) => {
+                    console.error(e);
+                });
+            },
             onSeatsPickerChanged: function(value) {
                 this.pickedSeats = value;
-                console.log(value)
             },
             reserveSeats: function() {
                 var reservationInfo = {
@@ -38,7 +55,6 @@
                     seatIds: this.pickedSeats
                 }
 
-                var dopa = "dsada"
                 axios.post("Reservation/Reservation/CreateReservation", reservationInfo)
                     .then((res => {
                         this.$router.push({ name: 'ConfirmReservation', params: { reservationId: res.data }});
@@ -48,23 +64,17 @@
     }
 </script>
 
-<style>
+<style lang="scss">
+
+    @import "Styles/Variables";
 
     .pick-cinema-screen {
-            color: gray;
-    border: 1px solid gray;
-    padding: 2px 0;
-    margin: 0 auto;
-    width: 500px;
-    text-align: center;
-    margin-bottom: 50px;
-    }
-
-    .pick-cinema-screen.is-taken {
-        background-image: repeating-linear-gradient(-45deg,
-      transparent,
-      transparent 10px,
-      gray 10,
-      gray 10);
+        color: $my-color-gray-text;
+        border: 1px solid $my-color-gray-text;
+        padding: 2px 0;
+        margin: 0 auto;
+        width: 500px;
+        text-align: center;
+        margin-bottom: 50px;
     }
 </style>

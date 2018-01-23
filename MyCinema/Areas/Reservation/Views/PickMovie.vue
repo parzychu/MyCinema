@@ -1,8 +1,10 @@
 ﻿<template>
     <section class="section is-fullheight my-pick-cinema">
-        <div class="section-title">
-            <h2 class="title is-2">Pick Movie</h2>
-        </div>
+        <nav class="breadcrumb has-arrow-separator is-large" aria-label="breadcrumbs">
+            <ul>
+                <li class="is-active" ><router-link :to="{name: 'PickMovie'}"> Wybierz Film</router-link></li>
+            </ul>
+        </nav>
         <div class="section-body">
             <currently-playing-section :movies="movies"></currently-playing-section>
         </div>

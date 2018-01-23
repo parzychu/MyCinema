@@ -1,3 +1,4 @@
+
 <template>
 <div class="my-seats-picker">
     <div class="seats-picker-cinema-room">
@@ -10,7 +11,7 @@
             @click="onSeatClicked(seat)"
             class="seats-picker-seat"
             :class="{'is-active': seat.isActive}">
-                {{seat.col}}
+                <span>{{seat.col}}</span>
         </div>
     </div> 
     </div>
@@ -18,57 +19,17 @@
 </template>
 
 <script>
-
 export default {
     name: 'SeatsPicker',
     data: function() {
         return {
-            seats: [],
-            // seats: [
-            //     [
-            //         {
-            //         number: 1,
-            //         id: 1001
-            //         }, 
-            //         {number: 2,
-            //         id: 1002 
-            //         },
-            //         {number: 3,
-            //         id: 1003 
-            //         },
-            //         {number: 4,
-            //         id: 1004 
-            //         }
-            //     ],
-            //     [   
-            //         {number: 1,
-            //         id: 2001
-            //         }, 
-            //         {number: 2,
-            //         id: 2002 
-            //         },
-            //         {number: 3,
-            //         id: 2003 
-            //         }
-            //     ],
-            // ],
             choosenSeats: []
         }
     },
-    props: ['seanceId'],
-    created: function () {
-        axios.post("Reservation/Reservation/GetSeats", {seanceId: this.seanceId})
-            .then((res) => {
-                this.seats = res.data;
-            }).catch((e) => {
-                console.error(e);
-            });
-    },
+    props: ['seats'],
     methods: {
         onSeatClicked: function(value) {
-            console.log(value)
-            value.isActive = !value.isActive;
-
+            this.$set(value, 'isActive', !value.isActive)
             if (value.isActive) {
                 this.choosenSeats.push(value.id);
             } else {
@@ -102,7 +63,7 @@ export default {
     }
     
     .seats-picker-seat {
-        color: $my-color-white;
+        color: $my-color-gray-icon-active;
         width: 50px;
         height: 35px;
         border-bottom-left-radius: 8px;
@@ -114,7 +75,8 @@ export default {
         border: 1px solid $my-color-primary;
 
         &.is-active {
-            background: $my-color-black;
+            background: $my-color-primary;
+            color: $my-color-white;
         }
 
         &.is-hidden {

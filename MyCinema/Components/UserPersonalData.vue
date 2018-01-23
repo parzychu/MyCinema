@@ -71,7 +71,7 @@
 </script>
 
 <style lang="scss">
-    @import "Styles/Variables";
+    
 
     .bg-poster {
         width: 100%;

@@ -2,13 +2,15 @@
 <template>
     <div class="my-movie-preview">
         <div class="movie-preview-title">{{ movie.name }}</div>
-        <img class="bg-poster" src="https://media.multikino.pl/thumbnails/50/rc/MjkwMEEy/eyJ0aHVtYm5haWwiOnsic2l6ZSI6WyIxMDAwMCIsIjEwMDAwIl0sIm1vZGUiOiJpbnNldCJ9fQ==/uploads/images/films_and_events/twoj-vincent-pl_b9d917af7b.JPG"/>
-        <div class="movie-preview-overlay">
-            <router-link :to="{name: 'PickCinema', params: {movieId: movie.id}}"
-            class="button is-medium is-outlined is-inverted is-primary">Rezerwuj</router-link>
-        </div>
-        <div class="movie-preview-info">
-            <div class="movie-preview-duration"><span class="icon is-small"><i class="fa fa-film"></i></span><span>{{movie.runningTime}} min</span></div>
+        <div class="movie-preview-content">
+            <img class="bg-poster" :src="'http://lorempixel.com/240/360/'+getRandomTheme()+'/'+getRandomNumber()"/>
+            <div class="movie-preview-overlay">
+                <router-link :to="{name: 'PickCinema', params: {movieId: movie.id}}"
+                class="button is-medium is-outlined is-inverted is-primary">Rezerwuj</router-link>
+            </div>
+            <div class="movie-preview-info">
+                <div class="movie-preview-duration"><span class="icon is-small"><i class="fa fa-film"></i></span><span>{{movie.runningTime}} min</span></div>
+            </div>
         </div>
         
 
@@ -23,6 +25,31 @@
 
         mounted: function () {
             console.log(this.movie, "movue")
+        }, 
+        methods: {
+            getRandomTheme: function() {
+                var randomNumber = Math.round(Math.random() * 6)
+                switch (randomNumber) {
+                    case 1:
+                        return 'nightlife';
+                        case 2: 
+                        return 'fashion';
+                        case 3:
+                        return 'people';
+                        case 4: 
+                        return 'city';
+                        case 5:
+                        return 'sports';
+                        case 6: 
+                        return 'animals';
+                        default:
+                        return 'technics'; 
+                }
+            },
+
+            getRandomNumber: function() {
+                return Math.round(Math.random() * 7) + 1;
+            }
         }
     }
 </script>
@@ -41,7 +68,17 @@
 
         .button {
             transform: translateY(100%);
-            transition: transform 0.35s;
+            transition: transform 0.35s, background-color 0.3s, border-color 0.3s;
+
+            &:hover {
+                border-color: $my-color-primary !important;
+                background-color: $my-color-primary !important;
+                color: white !important;
+            }
+        }
+        
+        .movie-preview-content {
+            position: relative;
         }
 
         .movie-preview-overlay {
@@ -71,7 +108,7 @@
         }
 
         .movie-preview-title {
-            color: white;
+            color: $my-color-gray-text;
             font-size: 1.25rem;
             font-weight: 400;
             line-height: 1.25;

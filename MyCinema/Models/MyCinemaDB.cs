@@ -14,7 +14,6 @@ namespace MyCinema
         public MyCinemaDB()
             : base("name=MyCinemaDB")
         {
-            //Database.SetInitializer<MyCinemaDB>(new DropCreateDatabaseIfModelChanges<MyCinemaDB>());
         }
 
         public virtual DbSet<Cinema> Cinemas { get; set; }

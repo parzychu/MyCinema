@@ -1,9 +1,58 @@
 
+
 <template>
-    <div>
-        <b-tabs v-model="activeTab">
+    <section class="section">
+        <b-tabs>
             <b-tab-item label="Historia rezerwacji">
 
+                <b-table
+            :data="res"
+            :striped="true"
+            :hoverable="true"
+            :mobile-cards="true">
+
+            <template slot-scope="props">
+
+                <b-table-column label="Tytuł filmu">
+                    {{ props.row.movieTitle }}
+                </b-table-column>
+
+                <b-table-column label="Data seansu" centered>
+                    {{ new Date(props.row.date).toLocaleDateString() }}
+                    {{ props.row.time }}
+                </b-table-column>
+
+                <b-table-column label="Kino">
+                    {{ props.row.cinema }}
+                </b-table-column>
+
+
+                <b-table-column label="Siedzenia">
+                    <div v-for="row in props.row.seats">
+                        <span>Rząd: {{row[0].row}}</span>
+                        <span>Miejsca:</span>
+                        <span v-for="seat in row">{{seat.column}},&nbsp;</span>
+                    </div>
+                </b-table-column>
+                <b-table-column>
+                    <button class="button is-primary">Pokaż szczegóły</button>
+                </b-table-column>
+            </template>
+
+            <template slot="empty">
+                <section class="section">
+                    <div class="content has-text-grey has-text-centered">
+                        <p>
+                            <b-icon
+                                icon="emoticon-sad"
+                                size="is-large">
+                            </b-icon>
+                        </p>
+                        <p>Nothing here.</p>
+                    </div>
+                </section>
+            </template>
+        </b-table>
             </b-tab-item>
 
             <b-tab-item label="Profil">
@@ -13,7 +62,7 @@
                 </personal-data-form>
             </b-tab-item>
         </b-tabs>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -24,13 +73,15 @@
         name: 'UserProfile',
         components: {
             'personal-data-form': UserPersonalData,
-            RepertoirePreview
+            'repertoire-preview': RepertoirePreview
         },
         created: function () {
+            this.getReservations()
         },
         data: function() {
             return {
-                employeeFormData: []
+                employeeFormData: [],
+                res: []
             }
         },
         methods: {
@@ -38,6 +89,10 @@
                 this.employeeFormData = UserPersonalData;
                 console.log(employeeFormData)
             },
+            getReservations: function() {
+                axios.post("Reservation/Reservation/GetUserReservations")
+                .then((res) => this.res = res.data);
+            }
         }
     }
 </script>

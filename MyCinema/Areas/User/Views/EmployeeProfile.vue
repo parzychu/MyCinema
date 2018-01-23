@@ -1,14 +1,14 @@
 
 <template>
-    <div>
-        <b-tabs v-model="activeTab">
+    <section class="section">
+        <b-tabs>
             <b-tab-item label="Check reservation code">
 
                 <b-field label="Wprowadź kod rezerwacji">
                     <b-input v-model="reservationCode" is-employee="true"></b-input>
                 </b-field>
 
-                <button>Odbierz rezerwację</button>
+                <button class="button is-primary">Odbierz rezerwację</button>
             </b-tab-item>
 
             <b-tab-item label="Dodaj pracownika">
@@ -19,12 +19,10 @@
             </b-tab-item>
 
             <b-tab-item label="Zarezerwuj bilet">
-                Zareserwuj bilet klientowi
-
                 <repertoire-preview></repertoire-preview>  
             </b-tab-item>
         </b-tabs>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -35,7 +33,8 @@
     export default {
         name: 'EmployeeProfile',
         components: {
-            'personal-data-form': UserPersonalData
+            'personal-data-form': UserPersonalData,
+            RepertoirePreview
         },
         created: function () {
         },

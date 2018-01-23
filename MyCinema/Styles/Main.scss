@@ -3,19 +3,27 @@
 @import "Styles/Variables";
 
 body {
-    background: $my-color-bg;
+    background: #f7f7f7;
     color: $my-color-primary;
 }
 
 .footer {
     color: $my-color-gray-text;
+    padding: 2rem 1.5rem 2rem !important;
 }
 
-.title {
-    color: $my-color-white;
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.reservation-next-btn {
+.footer {
+    margin-top: auto;
+    background: white;
+}
+
+.reservation-btn-next {
     margin-left: 50%;
     width: 50%;
     margin-top: 50px;
@@ -25,28 +33,31 @@ body {
     align-items: center;
     justify-content: space-between;
     font-size: 20px;
-    color: white;
+    color: $my-color-white;
     padding: 0 20px;
+    cursor: pointer;
+    
+    transition: color .2s;
+
+    &:hover {
+        color: $my-color-white;
+        background-color: darken($my-color-primary, 10%);
+    }
 }
 
-.section.is-fullheight {
-    min-height: calc(100vh - 52px);
-    display: flex;
-    flex-direction: column;
+.notification {
+    border-radius: 0;
+    cursor: pointer;
 
-    .section-title {
-        flex: 0 0 auto;
-        padding-bottom: 35px;
+    &.has-border-left {
+        border-left: 2px solid $my-color-primary;
     }
 
-    .section-body {
-        flex: 1 1 100%;
-        display: flex;
+    &.has-content-center {
         justify-content: center;
-        flex-direction: column;
-
-        > .button.align-left {
-            align-self: flex-start;
-        }
     }
+}
+
+.breadcrumb.is-large {
+    font-size: 2.1rem;
 }

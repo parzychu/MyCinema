@@ -15,14 +15,12 @@ namespace MyCinema
       {
       }
 
-      [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Key]
         public int Id { get; set; }
         
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
-
-        [Required]
+    
         public string Time { get; set; }
         
         public virtual Movie Movie { get; set; }

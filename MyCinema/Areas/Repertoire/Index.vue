@@ -1,9 +1,12 @@
 
 
 <template>
-    <div>
+    <section class="section">
+        
+        <h2 class="title is-2">Repertoire</h2>
+        
         <repertoire-preview></repertoire-preview>   
-    </div>
+    </section>
 </template>
 
 <script>

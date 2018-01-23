@@ -5,15 +5,17 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
+import bulmaConfig from "./../Styles/Bulma.config.scss";
+import css from "./../Styles/Main.scss";
+
 import Buefy from 'buefy';
-Vue.use(Buefy);
-// import 'buefy/lib/buefy.css';
-// import Style from '../Styles/Main.scss';
+Vue.use(Buefy,{
+    defaultIconPack: 'fa',
+});
 
 import Auth from "./auth.js";
 import Home from '../Areas/Home/Index.vue';
 import ReservationRoutes from '../Areas/Reservation/Routes.vue';
-import App from "./app.vue";
 import Navbar from "../Components/Navbar.vue";
 import MoviePreviewItem from 'Components/MoviePreview/MoviePreview.vue';
 import Repertoire from '../Areas/Repertoire/Index.vue';
@@ -67,16 +69,11 @@ Vue.component('my-component',
 
 const v = new Vue({
     router,
-    data: {
-        message: 'Hello Vue.js!'
-    },
     methods: {
       goBack() {
           window.history.length > 1
               ? this.$router.go(-1)
               : this.$router.push('/');
       }  
-    },
-    components: { App }
-
+    }
 }).$mount('#app')

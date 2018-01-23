@@ -35,6 +35,12 @@ namespace MyCinema
         [StringLength(50)]
         public string Adress { get; set; }
 
+        public int RoomCount { get; set; }
+
+        public string City { get; set; }
+        
+        public string PictureUrl { get; set; }
+
         [Required]
         [StringLength(20)]
         public string Telephone { get; set; }

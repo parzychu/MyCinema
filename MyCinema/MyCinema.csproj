@@ -208,10 +208,10 @@
     <Compile Include="Areas\Auth\Services\AppRole.cs" />
     <Compile Include="Areas\Auth\Services\AppUserManager.cs" />
     <Compile Include="Areas\Auth\Services\AuthRepository.cs" />
-    <Compile Include="Areas\Auth\Services\cc.cs" />
     <Compile Include="Areas\Home\Controllers\MoviesController.cs" />
     <Compile Include="Areas\Home\HomeAreaRegistration.cs" />
     <Compile Include="Areas\PriceList\PriceListAreaRegistration.cs" />
+    <Compile Include="Areas\Repertoire\Controllers\RepertoireController.cs" />
     <Compile Include="Areas\Repertoire\RepertoireAreaRegistration.cs" />
     <Compile Include="Areas\Reservation\Controllers\ReservationController.cs" />
     <Compile Include="Areas\Reservation\ReservationAreaRegistration.cs" />
@@ -290,6 +290,18 @@
     <Compile Include="Migrations\201801150114403_Reservation times.Designer.cs">
       <DependentUpon>201801150114403_Reservation times.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801202111108_Seance modify.cs" />
+    <Compile Include="Migrations\201801202111108_Seance modify.Designer.cs">
+      <DependentUpon>201801202111108_Seance modify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801202112299_Seance modify 2.cs" />
+    <Compile Include="Migrations\201801202112299_Seance modify 2.Designer.cs">
+      <DependentUpon>201801202112299_Seance modify 2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801212010184_Cinema modification.cs" />
+    <Compile Include="Migrations\201801212010184_Cinema modification.Designer.cs">
+      <DependentUpon>201801212010184_Cinema modification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cinema.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -307,19 +319,21 @@
     <Compile Include="Models\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Images\MyCinemaLogo.png" />
+    <Content Include="Content\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="dist\bundle.js" />
+    <Content Include="dist\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Libs\bootstrap.js" />
-    <Content Include="Libs\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\auth.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\Utils\Utils.js" />
     <Content Include="webpack.config.js" />
     <Content Include="package.json" />
     <Content Include="Areas\Home\Views\web.config" />
@@ -334,17 +348,7 @@
     <Content Include="Areas\PriceList\PriceList.vue" />
     <Content Include="Areas\Repertoire\Index.vue" />
     <Content Include="Areas\User\Views\web.config" />
-    <None Include="Libs\jquery-1.10.2.intellisense.js" />
-    <Content Include="Libs\jquery-1.10.2.js" />
-    <Content Include="Libs\jquery-1.10.2.min.js" />
-    <None Include="Libs\jquery.validate-vsdoc.js" />
-    <Content Include="Libs\jquery.validate.js" />
-    <Content Include="Libs\jquery.validate.min.js" />
-    <Content Include="Libs\jquery.validate.unobtrusive.js" />
-    <Content Include="Libs\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Libs\modernizr-2.6.2.js" />
-    <Content Include="Libs\respond.js" />
-    <Content Include="Libs\respond.min.js" />
+    <Content Include="Areas\Auth\Views\Registration.vue" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -360,8 +364,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Styles\Main.scss" />
-    <Content Include="Styles\Variables.scss" />
-    <Content Include="Scripts\auth.vue" />
+    <Content Include="Styles\Bulma.config.scss" />
+    <Content Include="Styles\_Variables.scss" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -374,15 +378,10 @@
     <Folder Include="Areas\PriceList\Controllers\" />
     <Folder Include="Areas\PriceList\Models\" />
     <Folder Include="Areas\PriceList\Views\Shared\" />
-    <Folder Include="Areas\Repertoire\Controllers\" />
     <Folder Include="Areas\Repertoire\Models\" />
+    <Folder Include="Areas\Repertoire\Views\Repertoire\" />
     <Folder Include="Areas\Repertoire\Views\Shared\" />
-    <Folder Include="Areas\Reservation\Models\" />
-    <Folder Include="Areas\Reservation\Views\Reservation\" />
-    <Folder Include="Areas\Reservation\Views\Shared\" />
     <Folder Include="Areas\User\Models\" />
-    <Folder Include="Areas\User\Views\Shared\" />
-    <Folder Include="Areas\User\Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -395,9 +394,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Libs\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -457,6 +453,82 @@
     <EmbeddedResource Include="Migrations\201801150114403_Reservation times.resx">
       <DependentUpon>201801150114403_Reservation times.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801202111108_Seance modify.resx">
+      <DependentUpon>201801202111108_Seance modify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801202112299_Seance modify 2.resx">
+      <DependentUpon>201801202112299_Seance modify 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801212010184_Cinema modification.resx">
+      <DependentUpon>201801212010184_Cinema modification.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\font-awesome\less\animated.less" />
+    <Content Include="Content\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Content\font-awesome\less\core.less" />
+    <Content Include="Content\font-awesome\less\fixed-width.less" />
+    <Content Include="Content\font-awesome\less\font-awesome.less" />
+    <Content Include="Content\font-awesome\less\icons.less" />
+    <Content Include="Content\font-awesome\less\larger.less" />
+    <Content Include="Content\font-awesome\less\list.less" />
+    <Content Include="Content\font-awesome\less\mixins.less" />
+    <Content Include="Content\font-awesome\less\path.less" />
+    <Content Include="Content\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Content\font-awesome\less\screen-reader.less" />
+    <Content Include="Content\font-awesome\less\stacked.less" />
+    <Content Include="Content\font-awesome\less\variables.less" />
+    <Content Include="Content\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Content\font-awesome\scss\_animated.scss" />
+    <Content Include="Content\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Content\font-awesome\scss\_core.scss" />
+    <Content Include="Content\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Content\font-awesome\scss\_icons.scss" />
+    <Content Include="Content\font-awesome\scss\_larger.scss" />
+    <Content Include="Content\font-awesome\scss\_list.scss" />
+    <Content Include="Content\font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\font-awesome\scss\_path.scss" />
+    <Content Include="Content\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Content\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="Content\font-awesome\scss\_stacked.scss" />
+    <Content Include="Content\font-awesome\scss\_variables.scss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\SeatsPicker\SeatsPicker.vue" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\Navbar.vue" />
+    <Content Include="Components\RepertoirePreview.vue" />
+    <Content Include="Components\ReservationDetailsPreview.vue" />
+    <Content Include="Components\UserPersonalData.vue" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\CurrentlyPlayingSection\CurrentlyPlayingSection.vue" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\Routes.vue" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\Views\ClientProfile.vue" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\User\Views\EmployeeProfile.vue" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Reservation\Views\ConfirmReservation.vue" />
+    <Content Include="Areas\Reservation\Views\LogInPage.vue" />
+    <Content Include="Areas\Reservation\Views\PickCinema.vue" />
+    <Content Include="Areas\Reservation\Views\PickMovie.vue" />
+    <Content Include="Areas\Reservation\Views\PickSeance.vue" />
+    <Content Include="Areas\Reservation\Views\PickSeats.vue" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Reservation\Routes.vue" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
