@@ -12,10 +12,14 @@ namespace MyCinema.Areas.Reservation.Services
         public static void GenerateMovies(MyCinemaDB db, int count)
         {
             Faker<Movie> testMovie = new Faker<Movie>()
-                .RuleFor(c => c.Title, f => f.Company.CatchPhrase())
+                .RuleFor(c => c.Title, f => f.Commerce.ProductName())
                 .RuleFor(c => c.Release, f => f.Date.Between(new DateTime(2016, 1, 1), new DateTime(2019, 12, 31)))
                 .RuleFor(c => c.DirectorName, f => f.Name.FullName())
-                .RuleFor(c => c.RunningTime, f => f.Random.Short(66, 180));
+                .RuleFor(c => c.RunningTime, f => f.Random.Short(66, 180))
+                .RuleFor(c => c.PictureUrl, f => f.Image.People())
+                .RuleFor(c => c.Description, f => f.Lorem.Paragraphs(f.Random.Number(1, 5)))
+                .RuleFor(c => c.Genre, f => f.Commerce.ProductAdjective())
+                .RuleFor(c => c.ProductionCountry, f => f.Address.Country());
 
             var movies = testMovie.Generate(count);
             foreach (Movie movie in movies)
@@ -44,28 +48,32 @@ namespace MyCinema.Areas.Reservation.Services
             }
         }
 
-        public static void GenerateRooms(MyCinemaDB db, int count)
+        public static void GenerateRooms(MyCinemaDB db)
         {
-            int roomId = 0;
-            int roomCount = 5;
-            int minRows = 5;
+            int minRows = 6;
             int maxRows = 15;
-            int maxCols = 20;
+            int maxCols = 25;
 
             var cinemas = db.Cinemas.ToList();
 
-            Faker<Room> testRoom = new Faker<Room>()
-                .RuleFor(c => c.Id, f => f.Random.Number(12345))
-                .RuleFor(c => c.Cinema, f => cinemas[f.Random.Number(cinemas.Count - 1)])
+            foreach (Cinema cinema in cinemas )
+            {
+                var count = cinema.RoomCount;
+
+                Faker<Room> testRoom = new Faker<Room>()
+                .RuleFor(c => c.Cinema, f => cinema)
                 .RuleFor(c => c.RowCount, f => f.Random.Number(minRows, maxRows))
                 .RuleFor(c => c.ColumnCount, (f, c) => f.Random.Number(c.RowCount, maxCols))
                 .RuleFor(c => c.Name, (f, c) => "Room " + c.Id);
 
-            var rooms = testRoom.Generate(count);
-            foreach (Room room in rooms)
-            {
-                db.Rooms.Add(room);
+                var rooms = testRoom.Generate(count);
+                foreach (Room room in rooms)
+                {
+                    db.Rooms.Add(room);
+                }
             }
+
+            
         }
 
         public static void GenerateSeats(MyCinemaDB db)

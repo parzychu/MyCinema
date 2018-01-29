@@ -17,7 +17,7 @@ namespace MyCinema.Areas.Auth.Services
     {
         MyCinemaDB _ctx;
 
-//        private UserManager<IdentityUser> _userManager;
+        //        private UserManager<IdentityUser> _userManager;
 
         public AuthRepository()
         {
@@ -25,19 +25,39 @@ namespace MyCinema.Areas.Auth.Services
             //            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
         }
 
-        public async Task<IdentityResult> RegisterUser(UserModel userModel)
+        public async Task<IdentityResult> RegisterUser(ApplicationUserDTO userModel, string roleName)
         {
             IdentityUser user = new IdentityUser()
             {
-                UserName = userModel.UserName
+                UserName = userModel.UserName,
+                Email = userModel.Email,
+                PhoneNumber = userModel.PhoneNumber
             };
-
+            var _roleManager = new RoleManager<IdentityRole>(
+                        new RoleStore<IdentityRole>(new MyCinemaDB()));
             var userManager = HttpContext.Current.GetOwinContext().GetUserManager<AppUserManager>();
             try
             {
-                var result = await userManager.CreateAsync(user, userModel.Password);
-                return result;
-            } catch (DbEntityValidationException dbEx)
+
+                bool x = await _roleManager.RoleExistsAsync(roleName);
+                if (!x)
+                {  
+                    var role = new IdentityRole();
+                    role.Name = roleName;
+                    await _roleManager.CreateAsync(role);
+                }
+                IdentityResult chkUser = await userManager.CreateAsync(user, userModel.Password);
+
+                //Add default User to Role Admin    
+                if (chkUser.Succeeded)
+                {
+                    var result1 = await userManager.AddToRoleAsync(user.Id, roleName);
+                }
+
+
+                return chkUser;
+            }
+            catch (DbEntityValidationException dbEx)
             {
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {
@@ -50,7 +70,7 @@ namespace MyCinema.Areas.Auth.Services
                 return null;
             }
 
-            
+
         }
 
         public async Task<IdentityUser> FindUser(string userName, string password)
@@ -62,8 +82,8 @@ namespace MyCinema.Areas.Auth.Services
             if (user != null)
             {
                 var ident = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                authManager.SignIn(new AuthenticationProperties {IsPersistent = false}, ident);
-//                userManager.AddToRole(userManager.FindByName("username").Id, "roleName");
+                authManager.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
+                //                userManager.AddToRole(userManager.FindByName("username").Id, "roleName");
                 return user;
             }
             throw new ArgumentException("nie można zarejestrowac");

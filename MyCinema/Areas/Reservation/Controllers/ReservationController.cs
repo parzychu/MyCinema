@@ -323,32 +323,6 @@ namespace MyCinema.Areas.Reservation.Controllers
       }
     }
 
-
-
-    public ActionResult CreateReservationData()
-    {
-      var db = new MyCinemaDB();
-
-      GenerateDataService.GenerateCinemas(db, 10);
-      //
-      //            GenerateMovies(db, 30);
-
-      //            GenerateRooms(db, 10);
-      //
-      //        GenerateDataService.GenerateSeats(db);
-      //
-      //          GenerateDataService.GenerateSeances(db, 100);
-
-//      GenerateDataService.GenerateSeatSeances(db);
-
-      db.SaveChanges();
-
-      return Json("ok");
-
-      return Json("ok");
-
-    }
-
 #if DEBUG
     
 
@@ -363,8 +337,63 @@ namespace MyCinema.Areas.Reservation.Controllers
       return Json("Cinemas Generated");
     }
 
+    public ActionResult GenerateMovies()
+    {
+        var db = new MyCinemaDB();
+
+        GenerateDataService.GenerateMovies(db, 25);
+
+        db.SaveChanges();
+
+        return Json("Movies Generated");
+    }
+
+        public ActionResult GenerateRooms()
+        {
+            var db = new MyCinemaDB();
+
+            GenerateDataService.GenerateRooms(db);
+
+            db.SaveChanges();
+
+            return Json("Rooms Generated");
+        }
+
+        public ActionResult GenerateSeats()
+    {
+        var db = new MyCinemaDB();
+
+        GenerateDataService.GenerateSeats(db);
+
+        db.SaveChanges();
+
+        return Json("Seats Generated");
+    }
+
+    public ActionResult GenerateSeances()
+    {
+        var db = new MyCinemaDB();
+
+        GenerateDataService.GenerateSeances(db, 200);
+
+        db.SaveChanges();
+
+        return Json("Seances Generated");
+    }
+
+    public ActionResult GenerateSeatsSeances()
+        {
+            var db = new MyCinemaDB();
+
+            GenerateDataService.GenerateSeatSeances(db);
+
+            db.SaveChanges();
+
+            return Json("Seats Seances Generated");
+        }
+
 
 #endif
 
-  }
+    }
 }

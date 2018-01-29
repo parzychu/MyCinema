@@ -45,5 +45,18 @@ namespace MyCinema.Areas.Repertoire.Controllers
 
         return Json(repertoire);
       }
+        
+        public ActionResult GetCinemas()
+        {
+            MyCinemaDB db = new MyCinemaDB();
+
+            var cinemas = db.Cinemas.Select(cinema => new
+            {
+                name = "MyCinema " + cinema.Name,
+                id = cinema.Id
+            }).ToList();
+
+            return Json(cinemas);
+        }
   }
 }

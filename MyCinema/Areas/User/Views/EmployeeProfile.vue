@@ -3,23 +3,34 @@
     <section class="section">
         <b-tabs>
             <b-tab-item label="Check reservation code">
+                <section class="section">
+                    <b-field label="Wprowadź kod rezerwacji">
+                        <b-input v-model="reservationCode" is-employee="true"></b-input>
+                    </b-field>
 
-                <b-field label="Wprowadź kod rezerwacji">
-                    <b-input v-model="reservationCode" is-employee="true"></b-input>
-                </b-field>
-
-                <button class="button is-primary">Odbierz rezerwację</button>
+                    <button class="button is-primary">Odbierz rezerwację</button>
+                </section>
             </b-tab-item>
 
             <b-tab-item label="Dodaj pracownika">
-                Dodaj pracowanika
+                <section class="section">
+                    <div class="columns">
+                        <div class="column is-2"></div>
+                        <div class="column is-8">
+                    Dodaj pracowanika
 
-                <personal-data-form v-on:submit="registerEmployee">
-                </personal-data-form>
+                    <personal-data-form v-on:submit="registerEmployee">
+                    </personal-data-form></div>
+                    </div>
+                    
+                </section>
             </b-tab-item>
 
             <b-tab-item label="Zarezerwuj bilet">
-                <repertoire-preview></repertoire-preview>  
+
+                <section class="section">
+                    <repertoire-preview></repertoire-preview>  
+                </section>
             </b-tab-item>
         </b-tabs>
     </section>
@@ -46,8 +57,13 @@
         },
         methods: {
             registerEmployee: function(employeeFormData) {
-                this.employeeFormData = employeeFormData;
-                console.log(employeeFormData)
+                axios.post("Auth/Login/RegisterEmployee", {userModel: employeeFormData})
+                    .then(res => {
+                        // self.$toast.open({
+                        //     message: 'Użytkownik został zarejestrowany',
+                        //     type: 'is-success'
+                        // });
+                    });
             },
         }
     }

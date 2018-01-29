@@ -24,17 +24,23 @@ namespace MyCinema
         public int Id { get; set; }
 
         [Required]
-        [StringLength(220)]
         public string Title { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime Release { get; set; }
 
         [Required]
-        [StringLength(50)]
         public string DirectorName { get; set; }
 
         public short RunningTime { get; set; }
+
+        public string PictureUrl { get; set; }
+
+        public string Description { get; set; }
+
+        public string Genre { get; set; }
+
+        public string ProductionCountry { get; set; }
         
         public virtual ICollection<Seance> Seances { get; set; }
     }

@@ -2,13 +2,14 @@
     <form v-on:submit.prevent="onSubmit">
         <b-field label="Imię i nazwisko">
             <b-input value="Kevin Garvey"
-                v-model="userName"></b-input>
+                ></b-input>
         </b-field>
 
         <b-field label="Email"
             type="is-danger"
             message="This email is invalid">
             <b-input type="email"
+                v-model="email"
                 value="john@"
                 maxlength="30">
             </b-input>
@@ -17,7 +18,17 @@
         <b-field label="Nazwa użytkownika"
             type="is-success"
             message="This username is available">
-            <b-input value="johnsilver" maxlength="30"></b-input>
+            <b-input value="johnsilver" 
+                v-model="userName"
+                maxlength="30"></b-input>
+        </b-field>
+
+        <b-field label="Telefon"
+            type="is-success"
+            message="This username is available">
+            <b-input value="johnsilver" 
+                v-model="phone"
+                maxlength="30"></b-input>
         </b-field>
 
         <b-field label="Hasło"
@@ -49,9 +60,11 @@
         name: 'UserPersonalData',
         data: function () {
             return {
-                userName: 'Maczek Smaczek',
+                userName: 'MaczekSmaczek',
                 password: 'TestTest123',
-                confirmPassword: 'TestTest123'
+                confirmPassword: 'TestTest123',
+                email: 'xdxd@maczek.pl', 
+                phone: '668 466 688'
             }
         },
         created: function () {
@@ -62,7 +75,9 @@
 
                 this.$emit('submit', {
                     userName: this.userName,
+                    email: this.email,
                     password: this.password,
+                    phoneNumber: this.phone, 
                     confirmPassword: this.confirmPassword
                 });
             }

@@ -302,6 +302,14 @@
     <Compile Include="Migrations\201801212010184_Cinema modification.Designer.cs">
       <DependentUpon>201801212010184_Cinema modification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801280000297_User modification.cs" />
+    <Compile Include="Migrations\201801280000297_User modification.Designer.cs">
+      <DependentUpon>201801280000297_User modification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290017066_Movie modification.cs" />
+    <Compile Include="Migrations\201801290017066_Movie modification.Designer.cs">
+      <DependentUpon>201801290017066_Movie modification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cinema.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -461,6 +469,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801212010184_Cinema modification.resx">
       <DependentUpon>201801212010184_Cinema modification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801280000297_User modification.resx">
+      <DependentUpon>201801280000297_User modification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290017066_Movie modification.resx">
+      <DependentUpon>201801290017066_Movie modification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

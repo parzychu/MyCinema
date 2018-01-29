@@ -19,6 +19,7 @@ using MyCinema.Areas.Auth.Models;
 using MyCinema.Areas.Auth.Services;
 using Newtonsoft.Json.Serialization;
 using AuthorizeAttribute = System.Web.Mvc.AuthorizeAttribute;
+using System.Web.Security;
 
 namespace MyCinema.Areas.Auth.Controllers
 {
@@ -33,14 +34,14 @@ namespace MyCinema.Areas.Auth.Controllers
 
         // POST api/Account/Register
         [System.Web.Http.AllowAnonymous]
-        public async Task<ActionResult> Register(UserModel userModel)
+        public async Task<ActionResult> RegisterClient(ApplicationUserDTO userModel)
         {
             if (!ModelState.IsValid)
             {
                 return new HttpStatusCodeResult(499);
             }
 
-            IdentityResult result = await _repo.RegisterUser(userModel);
+            IdentityResult result = await _repo.RegisterUser(userModel, "Client");
 
             ActionResult errorResult = GetErrorResult(result);
 
@@ -49,7 +50,27 @@ namespace MyCinema.Areas.Auth.Controllers
                 return errorResult;
             }
 
-            return new HttpStatusCodeResult(200);
+            return Json("Client Registered");
+        }
+
+        [System.Web.Http.AllowAnonymous]
+        public async Task<ActionResult> RegisterEmployee(ApplicationUserDTO userModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(499);
+            }
+
+            IdentityResult result = await _repo.RegisterUser(userModel, "Employee");
+
+            ActionResult errorResult = GetErrorResult(result);
+
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            return Json("Employee Registered");
         }
 
         public ActionResult Identity()
@@ -59,10 +80,13 @@ namespace MyCinema.Areas.Auth.Controllers
               return Json(HttpContext.User.Identity.IsAuthenticated);
             }
 
-          var userInfo = new
-          {
-            Login = HttpContext.User.Identity.Name,
-            IsAuthenticated = HttpContext.User.Identity.IsAuthenticated
+            var userInfo = new
+            {
+                Login = HttpContext.User.Identity.Name,
+                IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+                Roles = Roles.GetRolesForUser(HttpContext.User.Identity.Name),
+                IsClient = Roles.IsUserInRole("Client"),
+                IsEmployee = Roles.IsUserInRole("Employee")
           };
 
             return Json(userInfo);
@@ -82,19 +106,19 @@ namespace MyCinema.Areas.Auth.Controllers
                       DefaultAuthenticationTypes.ApplicationCookie);
                   authManager.SignIn(
                       new AuthenticationProperties { IsPersistent = false }, ident);
-        var userInfo = new
-        {
-          Login = HttpContext.User.Identity.Name,
-          IsAuthenticated = HttpContext.User.Identity.IsAuthenticated
-        };
+                var userInfo = new
+                {
+                    Login = HttpContext.User.Identity.Name,
+                    IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+                    Roles = Roles.GetRolesForUser(HttpContext.User.Identity.Name),
+                    IsClient = Roles.IsUserInRole("Client"),
+                    IsEmployee = Roles.IsUserInRole("Employee")
+                };
                 return Json(userInfo);
               }
             
             return Json("Invalid username or password");
-
-
-            IdentityUser result = await _repo.FindUser(userName, password);
-            return Json(result);
+            
         }
 
       public ActionResult Logout()

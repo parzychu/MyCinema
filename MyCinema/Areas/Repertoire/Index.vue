@@ -36,7 +36,7 @@
                 this.getRepertoire();
             },
             getRepertoire: function() {
-                axios.post("Reservation/Reservation/GetRepertoire", {cinemaId: 8, date: this.selectedDate})
+                axios.post("Repertoire/Repertoire/GetRepertoire", {cinemaId: 8, date: this.selectedDate})
                     .then((res) => {
                         this.repertoire = res.data;
                     }).catch((e) => {
