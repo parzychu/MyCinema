@@ -79,6 +79,8 @@
         
         .movie-preview-content {
             position: relative;
+            min-height: 300px;
+            min-width: 230px;
         }
 
         .movie-preview-overlay {

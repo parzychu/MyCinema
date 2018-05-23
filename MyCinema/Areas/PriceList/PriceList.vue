@@ -1,15 +1,10 @@
 ﻿
 
 <template>
-    <div>
-        <h2 class="title is-2">Cennik</h2> 
-        <div style="display: grid;
-                grid-template-columns: 200px 200px 200px 200px;
-                grid-template-rows: 80px 80px 80px;
-                font-size: 30px;
-                justify-content: center;
-                grid-gap: 1px 1px;">
-            <div></div>
+    <section class="section">
+        
+        <div class="price-list">
+            <div><h2 class="title is-3">Cennik</h2> </div>
             <div>Pn,Wt,Czw</div>
             <div>Śr</div>
             <div>Pt,Sob,Nd,Św</div>           
@@ -22,7 +17,7 @@
             <div>17zł</div>
             <div>24zł</div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -64,5 +59,20 @@
 </script>
 
 <style lang="scss">
+    .price-list {
+        display: grid;
+        grid-template-columns: 200px 200px 200px 200px;
+        grid-template-rows: 80px 80px 80px;
+        font-size: 30px;
+        justify-content: center;
+        grid-gap: 1px 1px;
 
+        & >div {
+            background-color: white;
+            margin: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
 </style>

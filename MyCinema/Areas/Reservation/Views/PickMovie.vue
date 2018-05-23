@@ -7,6 +7,7 @@
         </nav>
         <div class="section-body">
             <currently-playing-section :movies="movies"></currently-playing-section>
+            Wykorzystane zdjęcia pochodzą ze strony: http://lorempixel.com/ tam można naleźć informację o ich autorach.
         </div>
     </section>
 </template>

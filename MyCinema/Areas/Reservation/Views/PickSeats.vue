@@ -55,10 +55,15 @@
                     seatIds: this.pickedSeats
                 }
 
+                var self = this;
                 axios.post("Reservation/Reservation/CreateReservation", reservationInfo)
-                    .then((res => {
+                    .then(res => {
                         this.$router.push({ name: 'ConfirmReservation', params: { reservationId: res.data }});
-                    }).bind(this));
+                    }).catch(err => {
+                        this.$toast.open({
+                            message: 'Nie można zarezerwować tych miejsc',
+                        });
+                    });                 
             }
         }
     }

@@ -15,7 +15,7 @@ namespace MyCinema
       {
       }
 
-        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         
         [Column(TypeName = "date")]

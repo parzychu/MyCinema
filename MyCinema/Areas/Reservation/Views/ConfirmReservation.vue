@@ -38,7 +38,19 @@
         methods: {
             confirmReservation() { 
                 // Takiseer SuperPass 
-                axios.post("Reservation/Reservation/Confirm", {reservationId: this.$route.params.reservationId});
+                axios.post("Reservation/Reservation/Confirm", {reservationId: this.$route.params.reservationId})
+                .then(() => {
+                    this.$snackbar.open({
+                        message: 'Rejestracja została potwierdzona',
+                        type: 'is-success',
+                        position: 'is-top',
+                        actionText: 'OK',
+                        queue: false
+                    });
+                    this.$router.push("/User")
+                });
+
+                
             }
         }
     }

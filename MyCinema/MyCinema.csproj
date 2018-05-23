@@ -215,9 +215,10 @@
     <Compile Include="Areas\Repertoire\RepertoireAreaRegistration.cs" />
     <Compile Include="Areas\Reservation\Controllers\ReservationController.cs" />
     <Compile Include="Areas\Reservation\ReservationAreaRegistration.cs" />
-    <Compile Include="Areas\Reservation\Services\GenerateDataService.cs" />
+    <Compile Include="Controllers\GenerateDataService.cs" />
     <Compile Include="Areas\User\Controllers\UserController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Controllers\GenerateDataController.cs" />
     <Compile Include="Migrations\201711251400464_InitialCreate.cs" />
     <Compile Include="Migrations\201711251400464_InitialCreate.Designer.cs">
       <DependentUpon>201711251400464_InitialCreate.cs</DependentUpon>
@@ -310,6 +311,62 @@
     <Compile Include="Migrations\201801290017066_Movie modification.Designer.cs">
       <DependentUpon>201801290017066_Movie modification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801290029586_Cinema modification 2.cs" />
+    <Compile Include="Migrations\201801290029586_Cinema modification 2.Designer.cs">
+      <DependentUpon>201801290029586_Cinema modification 2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290032174_Room modification 2.cs" />
+    <Compile Include="Migrations\201801290032174_Room modification 2.Designer.cs">
+      <DependentUpon>201801290032174_Room modification 2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290034407_Room modification 3.cs" />
+    <Compile Include="Migrations\201801290034407_Room modification 3.Designer.cs">
+      <DependentUpon>201801290034407_Room modification 3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290035574_Room modification 4.cs" />
+    <Compile Include="Migrations\201801290035574_Room modification 4.Designer.cs">
+      <DependentUpon>201801290035574_Room modification 4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290038283_Room modification 5.cs" />
+    <Compile Include="Migrations\201801290038283_Room modification 5.Designer.cs">
+      <DependentUpon>201801290038283_Room modification 5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290039166_Room modification 7.cs" />
+    <Compile Include="Migrations\201801290039166_Room modification 7.Designer.cs">
+      <DependentUpon>201801290039166_Room modification 7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290050192_Room modification 8.cs" />
+    <Compile Include="Migrations\201801290050192_Room modification 8.Designer.cs">
+      <DependentUpon>201801290050192_Room modification 8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290055146_Room modification 9.cs" />
+    <Compile Include="Migrations\201801290055146_Room modification 9.Designer.cs">
+      <DependentUpon>201801290055146_Room modification 9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290103439_Room modification 10.cs" />
+    <Compile Include="Migrations\201801290103439_Room modification 10.Designer.cs">
+      <DependentUpon>201801290103439_Room modification 10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290107334_Room modification 11.cs" />
+    <Compile Include="Migrations\201801290107334_Room modification 11.Designer.cs">
+      <DependentUpon>201801290107334_Room modification 11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290122081_Room modification 13.cs" />
+    <Compile Include="Migrations\201801290122081_Room modification 13.Designer.cs">
+      <DependentUpon>201801290122081_Room modification 13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290130308_Room modification 14.cs" />
+    <Compile Include="Migrations\201801290130308_Room modification 14.Designer.cs">
+      <DependentUpon>201801290130308_Room modification 14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290132451_Seance modification 3.cs" />
+    <Compile Include="Migrations\201801290132451_Seance modification 3.Designer.cs">
+      <DependentUpon>201801290132451_Seance modification 3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290137122_Seance modification 4.cs" />
+    <Compile Include="Migrations\201801290137122_Seance modification 4.Designer.cs">
+      <DependentUpon>201801290137122_Seance modification 4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cinema.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -389,7 +446,10 @@
     <Folder Include="Areas\Repertoire\Models\" />
     <Folder Include="Areas\Repertoire\Views\Repertoire\" />
     <Folder Include="Areas\Repertoire\Views\Shared\" />
+    <Folder Include="Areas\Reservation\Services\" />
     <Folder Include="Areas\User\Models\" />
+    <Folder Include="NewFolder1\" />
+    <Folder Include="Views\GenerateData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -475,6 +535,48 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801290017066_Movie modification.resx">
       <DependentUpon>201801290017066_Movie modification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290029586_Cinema modification 2.resx">
+      <DependentUpon>201801290029586_Cinema modification 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290032174_Room modification 2.resx">
+      <DependentUpon>201801290032174_Room modification 2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290034407_Room modification 3.resx">
+      <DependentUpon>201801290034407_Room modification 3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290035574_Room modification 4.resx">
+      <DependentUpon>201801290035574_Room modification 4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290038283_Room modification 5.resx">
+      <DependentUpon>201801290038283_Room modification 5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290039166_Room modification 7.resx">
+      <DependentUpon>201801290039166_Room modification 7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290050192_Room modification 8.resx">
+      <DependentUpon>201801290050192_Room modification 8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290055146_Room modification 9.resx">
+      <DependentUpon>201801290055146_Room modification 9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290103439_Room modification 10.resx">
+      <DependentUpon>201801290103439_Room modification 10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290107334_Room modification 11.resx">
+      <DependentUpon>201801290107334_Room modification 11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290122081_Room modification 13.resx">
+      <DependentUpon>201801290122081_Room modification 13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290130308_Room modification 14.resx">
+      <DependentUpon>201801290130308_Room modification 14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290132451_Seance modification 3.resx">
+      <DependentUpon>201801290132451_Seance modification 3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290137122_Seance modification 4.resx">
+      <DependentUpon>201801290137122_Seance modification 4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

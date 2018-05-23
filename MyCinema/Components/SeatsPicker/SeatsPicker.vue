@@ -6,11 +6,16 @@
         :key="index"
         :row-index="index"
         class="seats-picker-row">
+        <div class="row-numeration">
+            <span>{{index + 1}}</span>
+        </div>
         <div v-for="seat in rows"
             :key="seat.id"
             @click="onSeatClicked(seat)"
             class="seats-picker-seat"
-            :class="{'is-active': seat.isActive}">
+            :class="{'is-active': seat.isActive, 
+             'is-disabled': !seat.isAvaliable,
+             'is-visible': !seat.isVisible}">
                 <span>{{seat.col}}</span>
         </div>
     </div> 
@@ -36,7 +41,6 @@ export default {
                 let index = this.choosenSeats.indexOf(value.id)
                 this.choosenSeats.splice(index, 1);
             }
-
             this.$emit('changed', this.choosenSeats);
         }
     }
@@ -44,7 +48,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "Styles/Variables";
+
+    @import "Styles/Variables";
 
 .my-seats-picker {
     .seats-picker-cinema-room {
@@ -59,6 +64,16 @@ export default {
 
         .seats-picker-seat:not(:first-of-type) {
             margin-left: 10px;
+        }
+
+        .row-numeration {
+            display: flex;
+            width: 30px;
+            justify-content: left;
+            align-items: center;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
         }
     }
     
@@ -77,6 +92,12 @@ export default {
         &.is-active {
             background: $my-color-primary;
             color: $my-color-white;
+        }
+
+        &.is-disabled {
+            background: darkgrey;
+            cursor: not-allowed;
+            pointer-events: none;
         }
 
         &.is-hidden {

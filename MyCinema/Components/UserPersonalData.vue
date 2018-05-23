@@ -1,56 +1,45 @@
 <template>
     <form v-on:submit.prevent="onSubmit">
-        <b-field label="Imię i nazwisko">
-            <b-input value="Kevin Garvey"
+        <b-field grouped>
+            <b-field label="Imię">
+            <b-input
                 ></b-input>
         </b-field>
 
-        <b-field label="Email"
-            type="is-danger"
-            message="This email is invalid">
-            <b-input type="email"
-                v-model="email"
-                value="john@"
-                maxlength="30">
-            </b-input>
+        <b-field label="Nazwisko">
+            <b-input
+                ></b-input>
         </b-field>
 
-        <b-field label="Nazwa użytkownika"
-            type="is-success"
-            message="This username is available">
-            <b-input value="johnsilver" 
+        </b-field>
+        
+        <b-field label="Nazwa użytkownika">
+            <b-input
                 v-model="userName"
                 maxlength="30"></b-input>
         </b-field>
 
-        <b-field label="Telefon"
-            type="is-success"
-            message="This username is available">
-            <b-input value="johnsilver" 
-                v-model="phone"
-                maxlength="30"></b-input>
+        <b-field label="Email">
+            <b-input type="email"
+                v-model="email"
+                maxlength="30">
+            </b-input>
         </b-field>
 
-        <b-field label="Hasło"
-            type="is-warning"
-            :message="['Password is too short', 'Password must have at least 8 characters']">
-            <b-input v-model="password" type="password" maxlength="30"></b-input>
+        <b-field label="Telefon">
+            <b-input
+                v-model="phone"></b-input>
         </b-field>
 
-        <b-field label="Potwierdź hasło"
-            type="is-warning"
-            :message="['Password is too short', 'Password must have at least 8 characters']">
-            <b-input v-model="confirmPassword" type="password" maxlength="30"></b-input>
+        <b-field label="Hasło">
+            <b-input v-model="password" type="password"></b-input>
         </b-field>
 
-        <b-field label="Subject">
-            <b-select placeholder="Select a subject">
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-            </b-select>
+        <b-field label="Potwierdź hasło">
+            <b-input v-model="confirmPassword" type="password"></b-input>
         </b-field>
 
-        <input type="submit" class="button" text="Zarejestruj">
+        <input type="submit" class="button reservation-btn-next" text="Zarejestruj">
     </form>
 </template>
 
@@ -60,11 +49,11 @@
         name: 'UserPersonalData',
         data: function () {
             return {
-                userName: 'MaczekSmaczek',
-                password: 'TestTest123',
-                confirmPassword: 'TestTest123',
-                email: 'xdxd@maczek.pl', 
-                phone: '668 466 688'
+                userName: '',
+                password: '',
+                confirmPassword: '',
+                email: '', 
+                phone: ''
             }
         },
         created: function () {

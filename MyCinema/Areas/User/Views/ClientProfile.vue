@@ -14,10 +14,10 @@
                             <b-table-column label="Data seansu" centered>
                                 {{ new Date(props.row.date).toLocaleDateString() }} {{ props.row.time }}
                             </b-table-column>
-
+<!-- 
                             <b-table-column label="Kino">
                                 {{ props.row.cinema }}
-                            </b-table-column>
+                            </b-table-column> -->
 
 
                             <b-table-column label="Siedzenia">

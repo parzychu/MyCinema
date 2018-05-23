@@ -27,15 +27,18 @@ namespace MyCinema.Areas.Repertoire.Controllers
       {
         date = (date ?? DateTime.Today).Date;
         MyCinemaDB db = new MyCinemaDB();
-        var repertoire = db.Seances.Where(seance => seance.Cinema.Id == cinemaId)
-            .Where(seance => DbFunctions.TruncateTime(seance.Date) == date)
+        var repertoire = db.Seances
+            .Where(seance => seance.Cinema.Id == cinemaId)
+            .Where(seance => DbFunctions
+                .TruncateTime(seance.Date) == date)
             .GroupBy(seance => seance.Movie)
             .Select(x => new RepertoireDTO
             {
               title = x.Key.Title,
               date = date.ToString(),
               seances = x.Key.Seances
-                    .Where(seance => DbFunctions.TruncateTime(seance.Date) == date)
+                    .Where(seance => DbFunctions
+                        .TruncateTime(seance.Date) == date)
                     .Select(seance => new RepertoireSeanceDTO
                     {
                       id = seance.Id,

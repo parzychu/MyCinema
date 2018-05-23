@@ -2,14 +2,43 @@
 <template>
     <section class="section">
         <b-tabs>
-            <b-tab-item label="Check reservation code">
+            <b-tab-item label="Sprawdź rezerwację">
                 <section class="section">
-                    <b-field label="Wprowadź kod rezerwacji">
-                        <b-input v-model="reservationCode" is-employee="true"></b-input>
+                    <b-field label="Wprowadź nazwę użytkownika" :type="reservationCodeType" :message="reservationCodeMessage">
+                        <b-input v-model="reservationCode"  is-employee="true"
+                        @input="reservationCodeMessage = ''; reservationCodeType = ''"></b-input>
                     </b-field>
 
-                    <button class="button is-primary">Odbierz rezerwację</button>
+                    <button class="button is-primary" @click="checkReservation()">Odbierz rezerwację</button>
                 </section>
+
+                <b-table :data="res" :striped="true" :hoverable="true" :mobile-cards="true">
+
+                        <template slot-scope="props">
+
+                            <b-table-column label="Tytuł filmu">
+                                {{ props.row.movieTitle }}
+                            </b-table-column>
+
+                            <b-table-column label="Data seansu" centered>
+                                {{ new Date(props.row.date).toLocaleDateString() }} {{ props.row.time }}
+                            </b-table-column>
+
+
+
+                            <b-table-column label="Siedzenia">
+                                <div v-for="row in props.row.seats">
+                                    <span>Rząd: {{row[0].row}}</span>
+                                    <span>Miejsca:</span>
+                                    <span v-for="seat in row">{{seat.column}},&nbsp;</span>
+                                </div>
+                            </b-table-column>
+                            <b-table-column>
+                                <button class="button is-primary">Pokaż szczegóły</button>
+                            </b-table-column>
+                        </template>
+
+                    </b-table>
             </b-tab-item>
 
             <b-tab-item label="Dodaj pracownika">
@@ -51,8 +80,11 @@
         },
         data: function() {
             return {
+                res: [],
                 employeeFormData: [],
-                reservationCode: null
+                reservationCode: null,
+                reservationCodeMessage: "",
+                reservationCodeType: ''
             }
         },
         methods: {
@@ -65,6 +97,15 @@
                         // });
                     });
             },
+
+            checkReservation: function() {
+                axios.post("User/User/GetUserReservations", {userName: this.reservationCode})
+                    .then((res) => this.res = res.data)
+                    .catch((err) => { 
+                        
+                    this.reservationCodeMessage = "Nie znaleziono podanego użytkownika";
+                    this.reservationCodeType = "is-danger";});
+            }
         }
     }
 </script>

@@ -39,7 +39,7 @@
 
             <template slot-scope="props">
 
-                <b-table-column label="Tytuł filmu">
+                <b-table-column label="Tytuł filmu" width="800">
                     {{ props.row.title }}
                 </b-table-column>
 
@@ -98,7 +98,7 @@
             },
             getRepertoire: function () {
                 axios.post("Repertoire/Repertoire/GetRepertoire", {
-                        cinemaId: 8,
+                        cinemaId: this.selectedCinema,
                         date: this.selectedDate
                     })
                     .then((res) => {

@@ -20,7 +20,7 @@ using Microsoft.AspNet.Identity;
 using MyCinema.Areas.Reservation.Services;
 using MyCinema.Models;
 using WebGrease.Css.Extensions;
-
+using System.Data.Entity.Core.Objects;
 
 namespace MyCinema.Areas.Reservation.Controllers
 {
@@ -108,6 +108,8 @@ namespace MyCinema.Areas.Reservation.Controllers
     {
       MyCinemaDB db = new MyCinemaDB();
 
+            var oldestReservationTime = DateTime.Now.AddMinutes(-15);
+
       var seats = db.SeatSeances
           .Where(seatSeance => seatSeance.Seance.Id == seanceId)
           .Select(seat =>
@@ -116,7 +118,7 @@ namespace MyCinema.Areas.Reservation.Controllers
                 row = seat.Seat.Row,
                 col = seat.Seat.Column,
                 id = seat.Id,
-                isAvaliable = seat.IsAvaliable,
+                isAvaliable = seat.IsAvaliable == true && (seat.PreReservationTime == null || (seat.PreReservationTime < oldestReservationTime ? true : false)),
                 isVisible = seat.IsVisible
               }
           )
@@ -168,6 +170,7 @@ namespace MyCinema.Areas.Reservation.Controllers
 
       reservation.SeanceId = info.seanceId;
       reservation.CreatedTime = DateTime.Now;
+        
 
       using (var db = new MyCinemaDB())
       {
@@ -177,6 +180,12 @@ namespace MyCinema.Areas.Reservation.Controllers
         var seats = db.SeatSeances
           .Where(seatSeance => seatSeance.Seance.Id == info.seanceId && info.seatIds.Contains(seatSeance.Id))
           .ToList();
+
+        if (seats.Any(seat => seat.IsAvaliable == false))
+        {
+            throw new ValidationException("Miejsce zostało już zarezerwowane.");
+        }
+
 
         foreach (var seat in seats)
         {
@@ -220,7 +229,7 @@ namespace MyCinema.Areas.Reservation.Controllers
     {
       public int id { get; set; }
       public string movieTitle { get; set; }
-      public DateTime date { get; set; }
+      public string date { get; set; }
       public string time { get; set; }
       public DateTime? reservationTime { get; set; }
       public string room { get; set; }
@@ -238,7 +247,7 @@ namespace MyCinema.Areas.Reservation.Controllers
       {
         id = currentReservation.Id,
         movieTitle = currentReservation.Seance.Movie.Title,
-        date = currentReservation.Seance.Date,
+        date = currentReservation.Seance.Date.ToString(),
         time = currentReservation.Seance.Time,
         reservationTime = currentReservation.ConfirmedTime,
         room = currentReservation.Seance.Room.Name,
@@ -270,7 +279,7 @@ namespace MyCinema.Areas.Reservation.Controllers
           id = x.Id,
           reservationTime = x.ConfirmedTime,
           movieTitle = x.Seance.Movie.Title,
-          date = x.Seance.Date,
+          date = x.Seance.Date.ToString(),
           time = x.Seance.Time,
           room = x.Seance.Room.Name,
           seats = db.SeatSeances
@@ -302,6 +311,8 @@ namespace MyCinema.Areas.Reservation.Controllers
         currentReservation.ConfirmedTime = DateTime.Now;
         currentReservation.IsConfirmed = true;
 
+
+
         db.Reservations.Attach(currentReservation);
         db.Entry(currentReservation).Property(x => x.UserId).IsModified = true;
         db.Entry(currentReservation).Property(x => x.IsConfirmed).IsModified = true;
@@ -322,78 +333,5 @@ namespace MyCinema.Areas.Reservation.Controllers
         return Json(currentReservation.Id);
       }
     }
-
-#if DEBUG
-    
-
-    public ActionResult GenerateCinemas()
-    {
-      var db = new MyCinemaDB();
-
-      GenerateDataService.GenerateCinemas(db, 10);
-
-      db.SaveChanges();
-
-      return Json("Cinemas Generated");
-    }
-
-    public ActionResult GenerateMovies()
-    {
-        var db = new MyCinemaDB();
-
-        GenerateDataService.GenerateMovies(db, 25);
-
-        db.SaveChanges();
-
-        return Json("Movies Generated");
-    }
-
-        public ActionResult GenerateRooms()
-        {
-            var db = new MyCinemaDB();
-
-            GenerateDataService.GenerateRooms(db);
-
-            db.SaveChanges();
-
-            return Json("Rooms Generated");
-        }
-
-        public ActionResult GenerateSeats()
-    {
-        var db = new MyCinemaDB();
-
-        GenerateDataService.GenerateSeats(db);
-
-        db.SaveChanges();
-
-        return Json("Seats Generated");
-    }
-
-    public ActionResult GenerateSeances()
-    {
-        var db = new MyCinemaDB();
-
-        GenerateDataService.GenerateSeances(db, 200);
-
-        db.SaveChanges();
-
-        return Json("Seances Generated");
-    }
-
-    public ActionResult GenerateSeatsSeances()
-        {
-            var db = new MyCinemaDB();
-
-            GenerateDataService.GenerateSeatSeances(db);
-
-            db.SaveChanges();
-
-            return Json("Seats Seances Generated");
-        }
-
-
-#endif
-
     }
 }

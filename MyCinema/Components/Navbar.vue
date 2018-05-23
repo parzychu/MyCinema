@@ -13,7 +13,7 @@
 
                 <!-- <router-link class="navbar-item" to="/User">User</router-link>
                 <router-link class="navbar-item" to="/Employee">Employee</router-link> -->
-                <router-link class="navbar-item" to="/Registration">User Registration</router-link>
+                <!-- <router-link class="navbar-item" to="/Registration">User Registration</router-link> -->
                 <button class="button navbar-burger">
                     <span></span>
                     <span></span>
@@ -85,17 +85,20 @@
             logout() {
                 Auth.logout();
                 this.isAuthorised = null;
-                this.$router.push({ path: '/'});
+                this.$router.push({ path: '/Login'});
             },
 
             goToUserProfile() {
-                if (!this.isAuthorised) {
-                    this.$router.push({ path: '/Login'});
-                } else if (this.isEmployee) {
-                    this.$router.push({ path: '/Employee'});
-                } else if (this.isClient) {
-                    this.$router.push({ path: '/User'});
-                }
+                this.getUser().then(() => {
+                    if (!this.isAuthorised) {
+                        this.$router.push({ path: '/Login'});
+                    } else if (this.isEmployee) {
+                        this.$router.push({ path: '/Employee'});
+                    } else if (this.isClient) {
+                        this.$router.push({ path: '/User'});
+                    }
+
+                })
             }
         }
     }

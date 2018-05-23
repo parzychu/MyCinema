@@ -37,15 +37,17 @@ namespace MyCinema
                 .Property(e => e.Title)
                 .IsUnicode(false);
 
+
+
             modelBuilder.Entity<Movie>()
                 .HasMany(e => e.Seances)
                 .WithRequired(e => e.Movie)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Room>()
-                .HasMany(e => e.Seats)
-                .WithRequired(e => e.Room)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Room>()
+            //    .HasMany(e => e.Seats)
+            //    .WithRequired(e => e.Room)
+            //    .WillCascadeOnDelete(false);
             
         }
     }
